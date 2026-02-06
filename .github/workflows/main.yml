@@ -1,0 +1,32 @@
+- name: prepare inventory
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: run local script
+      script:
+        executable: python3
+        cmd: ansible_ini.py
+    - name: write data to inventory
+      copy:
+        src: "/home/pjiang/inventory_info.txt"
+        dest: "/home/pjiang/inventory"
+
+-  name: capture show output
+   hosts: routers
+   gather_facts: no
+   connection: local
+
+   tasks:
+
+
+
+     - name: get version
+       ios_command:
+         commands: show version
+       register: ver
+
+     - name: save version to directory
+       copy:
+         content: "{{ ver.stdout | replace('\\n', '\n') }}"
+         dest: "/home/pjiang/{{ inventory_hostname }}_version.txt"
