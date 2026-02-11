@@ -9,7 +9,7 @@ three_w_entry1=""
 three_w_entry2=""
 three_w_entry3=""
 four_w_list_all=[]
-
+#begin
 
 def read1(next_w,e1,var1):
  global two_w_entry
