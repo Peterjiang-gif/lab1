@@ -1,0 +1,33 @@
+
+import os 
+import re
+filewrite=open('inventory_info.txt','w')
+filewrite.write("[switches]")
+filewrite.write('\n')
+filewrite.write('\n')
+filewrite.write('\n')
+with open('devices.txt','r') as output: 
+     for line in output: 
+         res=line.split()
+         if len(res)==int(2):
+            value=res[0]+" ansible_host="+res[1]
+            filewrite.write(value)
+            filewrite.write('\n')
+output.close
+filewrite.write('\n')
+filewrite.write('\n')
+filewrite.write('\n')
+filewrite.write('\n')
+filewrite.write("[switches:vars]")
+filewrite.write('\n')
+filewrite.write("ansible_network_os=ios")
+filewrite.write('\n')
+filewrite.write("ansible_user=ncscwks")
+filewrite.write('\n')
+filewrite.write("ansible_password=g3c8agunAhuc")
+filewrite.write('\n')
+filewrite.write("ansible_connection=network_cli")
+filewrite.write('\n')
+filewrite.close()
+
+

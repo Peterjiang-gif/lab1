@@ -1,0 +1,780 @@
+import os
+devices=[] 
+
+filewrite=open("site_issue_aps_info.txt","w")
+filewrite.write("site issue ap information(empty means all ap setting and status on their switch is ok)")
+filewrite.write("\n")
+with open("file_name.txt","r") as output:
+  for line in output:
+       if line.strip()!="":
+          res=line.split()
+          devices.append(res[0])
+output.close
+wireless_vlan=[]
+ap_data_vlan=[]
+ap_voice_vlan=[]
+ap_trunk_vlan=[]
+aps=[]
+layer3_Vlan=[]
+access_ap=["load-interval 30","authentication event fail action next-method","authentication event server dead action authorize vlan","authentication event server dead action authorize voice","authentication event server alive action reinitialize","authentication host-mode multi-domain","authentication open","authentication order mab dot1x","authentication priority dot1x mab","authentication port-control auto","authentication periodic","authentication timer reauthenticate 28800","authentication timer inactivity 180","authentication violation replace","mab","no snmp trap link-status","dot1x pae authenticator","dot1x timeout tx-period 10","storm-control broadcast level 1.00","spanning-tree portfast edge","spanning-tree bpduguard enable"]
+trunk_ap=["load-interval 30","authentication event fail action next-method","authentication event server dead action authorize vlan","authentication event server alive action reinitialize","authentication host-mode multi-host","authentication open","authentication order mab dot1x","authentication priority dot1x mab","authentication port-control auto","authentication periodic","authentication timer reauthenticate 28800","authentication timer inactivity 180","authentication violation replace","mab","no snmp trap link-status","dot1x pae authenticator","dot1x timeout tx-period 10","storm-control broadcast level 1.00","spanning-tree portfast","spanning-tree bpduguard enable"]
+
+// *note above ap standard config (one config line exist as one element)
+If ap config mismatch standard one , it will list the missing or mismatching details //
+
+line_value=""
+vlan_conf_down=[]
+for i in range(0,len(devices)):
+   
+    with open(devices[i]+"_vlan_brief.txt","r") as output: 
+         for line in output: 
+             if line.strip()!="":
+                res=line.split()
+                if len(res)>int(1): 
+                   if "_wireless" in res[1] or "_Wireless" in res[1] or "_wlan" in res[1] or "_Wlan" in res[1]:
+                      vlan_flag="ture"
+                      if len(wireless_vlan)>int(0):
+                         for j in range(0,len(wireless_vlan)):
+                             if res[0]==wireless_vlan[j]:
+                                vlan_flag="false"
+                      if vlan_flag=="ture": 
+                         wireless_vlan.append(res[0])
+    output.close
+    
+    if "-core-" in devices[i] or "-cs" in devices[i]:
+       layer3_vlan=""
+       wireless_related_vlan=[]
+       with open(devices[i]+"_interface.txt","r") as output:
+           start_flag="false" 
+           vlan_flag="false"
+           wlc_flag="false"
+           trunk_flag="false"
+           layer3_flag="false"
+           ip_flag="false"
+           allow_trunk=""
+           vlan_store=""
+           for line in output:
+               if start_flag=="ture":
+                  if "description" in line and "to" in line and "-wlc" in line: 
+                       
+                      wlc_flag="ture"
+                  if "switchport mode trunk" in line:
+                      trunk_flag="ture"
+                  if "switchport trunk allowed vlan" in line: 
+                      result=line.split()
+                      if len(result)==int(5):
+                         allow_trunk=result[4]
+                  if "ip address" in line and "." in line: 
+                     ip_flag="ture"
+                  if "ip router eigrp 1" in line:
+                     layer3_flag="ture"
+                  if "shutdown" in line:
+                      res=line.split()
+                      if res[0]=="shutdown": 
+                         if vlan_flag=="ture": 
+                            vlan_conf_down.append(devices[i]+"and"+vlan_store+"anddown")
+                  if "interface" in line or "end" in line:
+                          start_flag="false"
+                    
+                        
+                          if wlc_flag=="ture" and trunk_flag=="false": 
+                             filewrite.write(devices[i]+" wlc connected port not set trunk")
+                             filewrite.write('\n')
+                             filewrite.write('\n')
+                          if wlc_flag=="ture" and allow_trunk=="":
+                             filewrite.write(devices[i]+" wlc connected port not set trunk allowed vlan")
+                             filewrite.write('\n')
+                             filewrite.write('\n')
+                          if wlc_flag=="ture":
+                           if trunk_flag=="ture" and allow_trunk!="":
+                           
+                             
+                             if "," not in allow_trunk:
+                                 wireless_related_vlan.append(allow_trunk)
+                             else:
+                                 count=allow_trunk.split(',')
+                                 
+                                 for j in range(0,len(count)):
+                                     if '-' not in count[j]:
+                                        add_flag="ture"
+                                        for l in range (0,len(wireless_related_vlan)):
+                                            if wireless_related_vlan[l]==count[j]:
+                                               add_flag="false"
+                                        if add_flag=="ture":
+                                           wireless_related_vlan.append(count[j])
+                                     else: 
+                                        array=count[j].split('-')
+                                        if len(array)==int(2):
+                                           for k in range(0,(int(array[1])-int(array[0])+int(1))):
+                                                 add_flag="ture"
+                                                 for l in range (0,len(wireless_related_vlan)):
+                                                     if wireless_related_vlan[l]==str(int(array[0])+k):
+                                                        add_flag="false"
+                                                 if add_flag=="ture":
+                                                    wireless_related_vlan.append(str(int(array[0])+k))
+                          if ip_flag=="ture" and layer3_flag=="ture":
+                             layer3_vlan=layer3_vlan+"+"+vlan_store 
+                              
+                          vlan_flag="false"
+                          vlan_store=""
+               if "interface" in line:
+                 res=line.split()
+                 if len(res)==int(2):
+                    
+                    if res[0]=="interface" or res[0]=="[u'interface":
+                       start_flag="ture"
+                       wlc_flag="false"
+                       trunk_flag="false"
+                       layer3_flag="false"
+                       ip_flag="false"
+                       allow_trunk=""
+                    if "Vlan" in line or "vlan" in line:
+                        vlan_flag="ture"
+                        vlan_store=res[1].replace("Vlan","")
+                                                
+                        
+  
+       output.close
+        
+       
+       layer3_Vlan.append(devices[i]+":"+layer3_vlan)
+       
+       if len(wireless_related_vlan)>int(0):
+          for j in range(0,len(wireless_related_vlan)):
+              if "+"+wireless_related_vlan[j] not in layer3_vlan:
+                 filewrite.write(devices[i]+" wireless vlan "+ wireless_related_vlan[j]+" not in layer 3 traffic")
+                 filewrite.write('\n')
+                 filewrite.write('\n')
+*** compare wireless vlan in layer 3 vlan ****
+
+wireless_related_vlan=[]
+layer3_vlan=""
+vlan_down_port_up=[]
+for i in range(0,len(devices)):
+    vlan_port_info=[]
+    with open(devices[i]+"_vlan_brief.txt","r") as output:
+       vlan_id=""
+       vlan_port=""
+       vlan_value=""     
+       for line in output:
+         if 'active' in line or 'ACTIVE' in line: 
+             re=line.split()
+             if len(re)>int(1):
+                if re[0]=="vlan" or re[0]=="VLAN" or re[0]=="Vlan":
+                   if vlan_id!="":
+                      vlan_value=vlan_id+":"+vlan_port
+                      vlan_port_info.append(vlan_value)                        
+                   vlan_id=re[1]
+                   vlan_port=""
+                   if 'active' in line: 
+                      info=line.split('active')
+                      if len(info)>int(1):
+                         info[1]=info[1].strip()
+                         info[1]=info[1].strip('\n')
+                         vlan_port=vlan_port+info[1]
+                         
+                   if 'ACTIVE' in line: 
+                      info=line.split('ACTIVE')
+                      if len(info)>int(1):
+                         info[1]=info[1].strip()
+                         info[1]=info[1].strip('\n')
+                         vlan_port=vlan_port+info[1]
+                      
+                else:
+                      
+                        if 'vlan' in re[0]:
+                           re[0]=re[0].strip('vlan')
+                        if 'VLAN' in re[0]:
+                           re[0]=re[0].strip('VLAN')                     
+                        if 'Vlan' in re[0]:
+                           re[0]=re[0].strip('Vlan')            
+                        if 'vl' in re[0]:
+                           re[0]=re[0].strip('vl')
+                        if 'Vl' in re[0]:
+                           re[0]=re[0].strip('Vl')
+                        if vlan_id!="":
+                          
+                           vlan_value=vlan_id+":"+vlan_port
+                           vlan_port_info.append(vlan_value)                        
+                        vlan_id=re[0]
+                        vlan_port=""
+                        if 'active' in line: 
+                          info=line.split('active')
+                          if len(info)>int(1):
+                             info[1]=info[1].strip()
+                             info[1]=info[1].strip('\n')
+                             vlan_port=vlan_port+info[1] 
+                         
+                        if 'ACTIVE' in line: 
+                           info=line.split('ACTIVE')
+                           if len(info)>int(1):
+                              info[1]=info[1].strip()
+                              info[1]=info[1].strip('\n') 
+                              vlan_port=vlan_port+info[1]
+                              
+                              
+         if 'active' not in line and 'ACTIVE' not in line: 
+            if 'Te' in line or 'te' in line or 'Gi' in line or 'gi' in line or 'Fa' in line or 'fa' in line or 'Eth' in line or 'eth' in line: 
+               line=line.strip('\n')  
+               line=line.strip()   
+               vlan_port=vlan_port+","+line        
+       if vlan_id!="":
+          vlan_value=vlan_id+":"+vlan_port
+          vlan_port_info.append(vlan_value)
+    output.close  
+**** get vlan and interface match information ****
+    int_conf_up=""
+    Ci_ap_flag="false"
+    filewrite.write("\n")
+    filewrite.write("\n")
+    sub_aps=[]
+    core_con=""
+    port_chan=[]
+    core_trunk_int=[]
+    trunk_int_red=[]
+    with open(devices[i]+"_interface.txt","r") as output:
+         start_flag="false"
+         if_ap=""
+         switch_mode=""
+         data_vlan=""
+         voice_vlan=""
+         native_trunk=""
+         int_name=""
+         ap_name=""
+         trunk_match_flag=""
+         port_flag="false"
+         core_con_flag="false"
+         ds_con_flag="false"
+         allow_trunk=""
+         port_store=""
+         chan_store=""
+         ap_find_flag="false"
+         int_sta_down="false"     
+         for line in output:
+             if start_flag=="ture": 
+                line_value=line_value+"+"+line.strip('\n')
+                if "description" in line:
+                 if "-ap" in line: 
+                   // * note here use keyword “-ap” to identify a device interface connecting to a access point end device , if access point change , may need to use other keyword(like -Ap) to identify ap connecting interface 
+                 // * note if want to check other end devices (like -vg) config/status , just need to use other keywords(like -vg) that can identify other kind of devices to replace keyword “-ap” , do not need change any other code line or variable  
+                    if if_ap=="false":
+                       if_ap="ture"
+                       re=line.split()
+                       for j in range(0,len(re)):
+                           if "-ap" in re[j]: 
+// * note keyword “-ap” may need to change 
+                              ap_name=re[j]
+                  
+                if "description" in line and "-s" in line:
+                    
+                    ds_con_flag="ture" 
+                if "description" in line and "-ds" in line: 
+                    ds_con_flag="ture"
+                if "description" in line and "-bs" in line: 
+                    ds_con_flag="ture"
+                if "description" in line and "-us" in line: 
+                    ds_con_flag="ture"
+                //* note here use “-s”, “-ds” .. as key words to identify one switch intereface connecting other  layer2 switches in devices.txt file , if layer2 switch name is different , need to replace the key words to identify switch intereface connecting  other layer2 switches // 
+                if  "-nx-core-" in line or "-cs" in line:
+       // * note here use “-nx-core”, “-cs” .. as key words to identify one switch intereface connecting layer3 switches in devices.txt file , if layer3 switch name is different , need to replace the key words(like -CSW ) to identify switch intereface connecting  layer3 switches
+                  if "description" in line:
+                   core_con_flag="ture"
+                if "switchport mode access" in line: 
+                    switch_mode="access"
+                if "switchport mode trunk" in line: 
+                    switch_mode="trunk"
+                if "switchport access vlan" in line:
+                    re=line.split()
+                    if len(re)==int(4): 
+                       data_vlan=re[3]
+                       if len(ap_data_vlan)==int(0):
+                           ap_data_vlan.append(data_vlan)
+                       else: 
+                          data_write_flag="ture"
+                          for j in range(0,len(ap_data_vlan)):
+                              if ap_data_vlan[j]==data_vlan:
+                                 data_write_flag="false"
+                          if data_write_flag=="ture":
+                             ap_data_vlan.append(data_vlan)
+                              
+                if "switchport voice vlan" in line:
+                   re=line.split()
+                   if len(re)==int(4): 
+                       voice_vlan=re[3]
+                       if len(ap_voice_vlan)==int(0):
+                           ap_voice_vlan.append(voice_vlan)
+                       else: 
+                          voice_write_flag="ture"
+                          for j in range(0,len(ap_voice_vlan)):
+                              if ap_voice_vlan[j]==voice_vlan:
+                                 voice_write_flag="false"
+                          if voice_write_flag=="ture":
+                             ap_voice_vlan.append(voice_vlan)
+                if "switchport trunk native vlan" in line:
+                   re=line.split()
+                   if len(re)==int(5): 
+                       native_trunk=re[4]
+                       if len(ap_trunk_vlan)==int(0):
+                           ap_trunk_vlan.append(native_trunk)
+                       else: 
+                          trunk_write_flag="ture"
+                          for j in range(0,len(ap_trunk_vlan)):
+                              if ap_trunk_vlan[j]==native_trunk:
+                                 trunk_write_flag="false"
+                          if trunk_write_flag=="ture":
+                             ap_trunk_vlan.append(native_trunk)
+                if "switchport trunk allowed vlan" in line: 
+                   res=line.split()
+                   if len(res)==int(5):
+                      allow_trunk=res[4]
+                if "channel-group" in line and "mode" in line: 
+                   res=line.split()
+                   if len(res)==int(4):
+                      chan_store=res[1]
+                if "shutdown" in line: 
+                   res=line.split()
+                   if res[0]=="shutdown":
+                      int_sta_down="ture"
+                if "interface" in line or "end" in line:
+                   res=line.split()
+                   if len(res)==int(2):
+                      start_flag="false"
+                      if res[0]=="interface":
+                         if int_sta_down=="false":
+                            
+                            if 'Te' in int_name:
+                               int_conf_up=int_conf_up+"+"+int_name.replace("nGigabitEthernet","")
+                            if 'Gi' in int_name:
+                               if 'Te' not in int_name:
+                                 if 'FortyGi' not in int_name:
+                                   int_conf_up=int_conf_up+"+"+int_name.replace("gabitEthernet","")
+                            if 'FastEthernet' in int_name: 
+                               int_conf_up=int_conf_up+"+"+int_name.replace("stEthernet","")
+                            if 'FortyGi' in int_name:
+                               int_conf_up=int_conf_up+"+"+int_name.replace("rtyGigabitEthernet","")
+                            if 'Eth' in int_name:
+                               if 'Te' not in int_name:
+                                 if 'Gi' not in int_name:
+                                   if 'FastEthernet' not in int_name:
+                                     if 'FortyGi' not in int_name:
+                                        int_conf_up=int_conf_up+"+"+int_name.replace("ernet","")
+                         int_sta_down="false"
+                         if if_ap=="ture":
+                            re_name=ap_name.split('-')
+                            
+                            if switch_mode!="access" and switch_mode!="trunk":
+                               
+                                  filewrite.write(ap_name+"connected to "+devices[i]+"'s "+int_name+","+" ap connected switchport is neither trunk port nor access port")
+                                  filewrite.write("\n")
+                            if switch_mode=="trunk":
+                               if native_trunk=="":
+                                 
+                                  filewrite.write(ap_name+"connected to "+devices[i]+"'s "+int_name+","+" it is trunk connect ap but is not set trunk vlan")
+                                  filewrite.write("\n")
+                               if native_trunk!="":
+                                  trunk_match_flag="false"
+                                  if len(wireless_vlan)>int(0):
+                                     for j in range(0,len(wireless_vlan)):
+                                         if wireless_vlan[j]==native_trunk:
+                                            trunk_match_flag="ture"
+                                  if trunk_match_flag=="false":
+                                    
+                                     filewrite.write(ap_name+"connected to "+devices[i]+"'s "+int_name+","+" it is trunk connect ap but its set trunk vlan is not wireless vlan on the site")
+                                     filewrite.write("\n")
+                                  if trunk_match_flag=="ture":
+                                     aps.append(ap_name+"+"+devices[i]+"+"+int_name+"+trunk"+"+"+native_trunk)
+                                     sub_aps.append(ap_name+"+"+devices[i]+"+"+int_name+"+trunk"+"+"+native_trunk+"+"+line_value)
+                            if switch_mode=="access":
+                               if data_vlan!="":
+                                  
+                                  aps.append(ap_name+"+"+devices[i]+"+"+int_name+"+access"+"+"+data_vlan+"+"+voice_vlan)
+                                  sub_aps.append(ap_name+"+"+devices[i]+"+"+int_name+"+access"+"+"+data_vlan+"+"+voice_vlan+"+"+line_value) 
+                               else: 
+                                  
+                                    filewrite.write(ap_name+"connected to "+devices[i]+"'s "+int_name+","+" it is access connect ap but ap is not assigned to a vlan")
+                                    filewrite.write("\n")
+                         if ds_con_flag=="ture":
+                          if "-core" in devices[i] or "-cs" in devices[i]:
+/* note may need to change 
+                           if "Vlan" not in int_name and "port-channel" not in int_name:
+                              core_trunk_int.append(int_name)
+                              if switch_mode!="trunk":
+                                filewrite.write(devices[i]+"'s trunk connect int "+int_name+" not set trunk")
+                                filewrite.write("\n")
+                              if allow_trunk=="":
+                                filewrite.write(devices[i]+"'s trunk connect int "+int_name+" not set trunk allowed vlan")
+                                filewrite.write("\n")
+                           if switch_mode=="trunk" and allow_trunk!="":
+                             if "Vlan" not in int_name and "port-channel" not in int_name:
+                              if chan_store=="":
+                                 trunk_int_red.append(int_name+":"+"none"+":"+allow_trunk)
+                              if chan_store!="":
+                                 trunk_int_red.append(int_name+":"+chan_store+":"+allow_trunk)
+                              if core_con=="":
+                                 core_con=chan_store+":"+allow_trunk
+ 
+                         if core_con_flag=="ture" and "-core-" not in devices[i]:
+                           core_trunk_int.append(int_name)
+                           if switch_mode!="trunk":
+                            filewrite.write(devices[i]+"'s trunk connect int "+int_name+" not set trunk")
+                            filewrite.write("\n")
+                           if allow_trunk=="":
+                            filewrite.write(devices[i]+"'s trunk connect int "+int_name+" not set trunk allowed vlan")
+                            filewrite.write("\n")
+                           if switch_mode=="trunk" and allow_trunk!="":
+                              if chan_store=="":
+                                 trunk_int_red.append(int_name+":"+"none"+":"+allow_trunk)
+                              if chan_store!="":
+                                 trunk_int_red.append(int_name+":"+chan_store+":"+allow_trunk)
+                              if core_con=="":
+                                 core_con=chan_store+":"+allow_trunk
+                              if core_con!="":
+                                 if core_con!=(chan_store+":"+allow_trunk):
+                                    filewrite.write(devices[i]+"'s core connect ports trunk set different")
+                                    filewrite.write("\n")
+                                    diff=allow_trunk.split(',')
+                                    for L in range(0,len(diff)):
+                                        F_flag="false"
+                                        Con=core_con.split(':')
+                                        sub_con=Con[1].split(',')
+                                        for O in range(0,len(sub_con)):
+                                            if diff[L]==sub_con[O]:
+                                               F_flag="ture"
+                                        if F_flag=="false":
+                                           core_con=core_con+","+diff[L]
+                              
+                           chan_store=""
+                           core_con_flag="false"
+                           ds_con_flag="false"
+                         if port_flag=="ture":
+                           if switch_mode!="trunk":
+                            filewrite.write(devices[i]+"'s "+port_store+" not set trunk")
+                            filewrite.write("\n")
+                           if allow_trunk=="":
+                            filewrite.write(devices[i]+"'s "+port_store+" not set trunk allowed vlan")
+                            filewrite.write("\n")
+                           if switch_mode=="trunk" and allow_trunk!="":
+                            port_chan.append(port_store+":"+allow_trunk)
+                           port_store=""
+                           port_flag="false"
+                   line_value=""
+             if "interface" in line:
+                 res=line.split()
+                 if len(res)==int(2):
+                    if res[0]=="interface"or res[0]=="[u'interface":
+                       start_flag="ture"
+                       if_ap="false"   
+                       switch_mode=""
+                       data_vlan=""
+                       voice_vlan=""
+                       native_trunk=""
+                       int_name=res[1]
+                       ap_name=""
+                       allow_trunk=""
+                       core_con_flag="false"
+                       ds_con_flag="false"
+                       chan_store=""
+                    if "Port-channel" in line or "port-channel" in line:
+                       port_store=res[1]
+                       port_flag="ture"
+
+
+    output.close
+    
+    if len(vlan_conf_down)>int(0):
+       for j in range(0,len(vlan_conf_down)):
+           if len(vlan_port_info)>int(0):
+              vl_res=vlan_conf_down[j].split('and')
+              for k in range(0,len(vlan_port_info)):
+                  if vl_res[1]+":" in vlan_port_info[k]:
+                     vl_rec=vlan_port_info[k].split(':')
+                     if len(vl_rec)>int(1) and vl_rec[0]==vl_res[1]:
+                         vl_rec[1]=vl_rec[1].replace(" ","") 
+                         sub_vl_rec=vl_rec[1].split(',')
+                         for w in range(0,len(sub_vl_rec)): 
+                             if "']" in sub_vl_rec[w]:
+                                sub_vl_rec[w]=sub_vl_rec[w].replace("']","")
+                             sub_vl_rec[w].strip(" ")
+                             if 'Po' not in sub_vl_rec[w] and 'po' not in sub_vl_rec[w]: 
+                                
+                                if "+"+sub_vl_rec[w] in int_conf_up:
+                                   vlan_down_port_up.append(vl_res[0]+"'s vlan"+" "+vl_res[1]+" down"+" but "+devices[i]+" down vlan related port "+sub_vl_rec[w]+" is up")               
+
+     if "-core" in devices[i]:
+     /* note keyword “-core” may need to change by others (like -CSW .-cs etc)
+      
+      if len(trunk_int_red)>int(0) and len(port_chan)>int(0):
+        for l in range(0,len(trunk_int_red)): 
+           rec=trunk_int_red[l].split(':')
+           port_find="false"
+           port_match="false"
+           for m in range(0,len(port_chan)):
+               if "Port-channel"+rec[1] in port_chan[m] or "port-channel"+rec[1] in port_chan[m]:
+                   port_find="ture"
+                   if "Port-channel"+rec[1]+":"+rec[2]==port_chan[m] or "port-channel"+rec[1]+":"+rec[2]==port_chan[m]:
+                       port_match="ture"
+         
+           if port_find=="false":
+             if rec[1]!="none":
+              filewrite.write(devices[i]+"'s trunk int "+rec[0]+"related port-channel "+rec[1]+" is not in config")
+              filewrite.write("\n")
+           else:
+              if port_match=="false":
+                 filewrite.write(devices[i]+"'s trunk int "+rec[0]+" allowed vlan do not match"+" the port related port-channel "+rec[1]+" 's allowed vlan")
+                 filewrite.write("\n")
+      if len(core_trunk_int)>int(0):
+        
+        for l in range(0,len(core_trunk_int)):
+           with open (devices[i]+"_ip_interface.txt","r") as output: 
+                for line in output: 
+                    if core_trunk_int[l] in line:
+                       
+                       if "down" in line: 
+                          filewrite.write(devices[i]+"'s trunk int "+line)
+    if  "-core" not in devices[i]:
+         /* note if layer3 switch name does not include “-core” , need to use other key word (like -cs)to replace “-core” 
+      if len(trunk_int_red)>int(0) and len(port_chan)>int(0):
+        for l in range(0,len(trunk_int_red)): 
+           rec=trunk_int_red[l].split(':')
+           port_find="false"
+           port_match="false"
+           for m in range(0,len(port_chan)):
+               if "Port-channel"+rec[1] in port_chan[m]:
+                   port_find="ture"
+                   if "Port-channel"+rec[1]+":"+rec[2]==port_chan[m]:
+                       port_match="ture"
+         
+           if port_find=="false":
+              filewrite.write(devices[i]+"'s trunk int "+rec[0]+"related port-channel "+rec[1]+" is not in config")
+              filewrite.write("\n")
+           else:
+              if port_match=="false":
+                 filewrite.write(devices[i]+"'s trunk int "+rec[0]+" allowed vlan do not match"+" the port related port-channel "+rec[1]+" 's allowed vlan")
+                 filewrite.write("\n")
+      if len(core_trunk_int)>int(0):
+        
+        for l in range(0,len(core_trunk_int)):
+           with open (devices[i]+"_ip_interface.txt","r") as output: 
+                for line in output: 
+                    if core_trunk_int[l] in line:
+                       if "down" in line: 
+                          filewrite.write(devices[i]+"'s trunk int "+line) 
+      
+      if len(sub_aps)>int(0):
+        
+        for k in range(0,len(sub_aps)):
+          result=sub_aps[k].split('+')
+          if "-ag" in sub_aps[k] or "-vg" in sub_aps[k]:
+            t_flag="ture"
+            if "storm-control broadcast level 10.00" not in sub_aps[k]:
+               t_flag="false"
+               filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" 'storm-control broadcast level 10.00' missed in device connected sw port ")
+               filewrite.write("\n")
+            if "storm-control multicast level 10.00" not in sub_aps[k]:
+               t_flag="false"
+               filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" 'storm-control multicast level 10.00' missed in device connected sw port ")
+               filewrite.write("\n")
+ //* note above is an example to check other kind end point device(-ag, -vg) config correct or not , if the “storm-control broadcast…” or “storm-control mutlicast…” is missing in endpoint ag/vg device config , tool will record it in result 
+            if t_flag=="ture": 
+               filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" device's"+" switchport config follow the standard config set")
+               filewrite.write("\n")
+ 
+          if "-ap" in sub_aps[k]:
+//* note may need to modify key word 
+            if "+trunk+" in sub_aps[k]:
+               t_flag="ture"
+               for o in range(0,len(trunk_ap)):
+                   if o==int(2):
+                      if "+ "+trunk_ap[o]+" "+result[4] not in sub_aps[k]:
+                        t_flag="false"
+                        filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" '"+trunk_ap[o]+" "+result[4]+"' missed in ap connected sw port ")
+                        filewrite.write("\n")
+                   else:
+                      if "+ "+trunk_ap[o] not in sub_aps[k]:
+                        t_flag="false"
+                        filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" '"+trunk_ap[o]+"' missed in ap connected sw port ")
+                        filewrite.write("\n")
+               if t_flag=="ture": 
+                  filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" ap's"+" switchport config follow the standard config set")
+                  filewrite.write("\n")
+
+            if "+access+" in sub_aps[k]:
+               t_flag="ture"
+               for o in range(0,len(access_ap)):
+                   if o==int(2):
+                      if "+ "+access_ap[o]+" "+result[4] not in sub_aps[k]:
+                        t_flag="false"
+                        filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" '"+access_ap[o]+" "+result[4]+"' missed in ap connected sw port ")
+                        filewrite.write("\n")
+                   else:
+                      if "+ "+access_ap[o] not in sub_aps[k]:
+                        t_flag="false"
+                        filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" '"+access_ap[o]+"' missed in ap connected sw port ")
+                        filewrite.write("\n")
+               if t_flag=="ture": 
+                  filewrite.write(result[0]+" connected to "+devices[i]+"'s "+result[2]+","+" ap's"+" switchport config follow the standard config set")
+                  filewrite.write("\n")
+            
+
+            find_flag="false"
+            auth_flag="ture"
+            if 'Te' in result[2]:
+               name=result[2].replace("nGigabitEthernet","")
+            if 'Gi' in result[2] and 'Te' not in result[2]:
+               name=result[2].replace("gabitEthernet","")
+            if 'Eth' in result[2]:
+               if 'Te' not in result[2] and 'Gi' not in result[2]:
+                   name=result[2].replace("ernet","")
+            
+            with open(devices[i]+"_auth_session.txt","r") as output:
+              for line in output:
+                  res=line.split()
+                  if len(res)==int(6):
+                     if res[0]==name:
+                        find_flag="ture"
+                        if res[4]=="Unauth":
+                           auth_flag="false"
+                           filewrite.write(result[0]+"connected to "+devices[i]+"'s "+result[2]+","+" the ap fail to authenticate connected switch")
+                           filewrite.write("\n")
+            output.close
+            if find_flag=="false":
+              filewrite.write(result[0]+"connected to "+devices[i]+"'s "+result[2]+","+" the ap fail to authenticate connected switch and fail to learn mac address")
+              filewrite.write("\n")
+              with open(devices[i]+"_ip_interface.txt","r") as output: 
+                    for line in output:
+                        if result[2] in line:
+                           filewrite.write("    "+result[0]+" 's port "+line)
+              output.close
+
+            if auth_flag=="false":
+               with open(devices[i]+"_ip_interface.txt","r") as output: 
+                    for line in output:
+                        if result[2] in line:
+                           filewrite.write("    "+result[0]+" 's port "+line)
+               output.close
+
+            if result[3]=="access" and result[4]!="":
+               
+               if "-core" not in devices[i]:
+                   //* note may need to modify key word 
+                   if core_con=="":
+                      filewrite.write(result[0]+"connected to "+devices[i]+"'s "+result[2]+","+" ap connected sw not set trunk port to core switch")
+                      filewrite.write("\n")
+                   if len(core_trunk_int)>int(0) and len(port_chan)>int(0):
+                    content=core_con.split(':')
+                    if len(content)==int(2):
+                       j_flag="false"
+                       for v in range(0,len(core_trunk_int)):
+                           if core_trunk_int[v]=="Po"+content[0]:
+                              j_flag="ture"
+                       if j_flag=="false":
+                         core_trunk_int.append("Po"+content[0])
+                      
+                      
+                    T_vlan=[]
+                    with open(devices[i]+"_int_trunk.txt","r") as output:
+                      start_flag="false"
+                      get_flag="false"
+                      vlan_get_flag="false"
+                      for line in output:
+                          if start_flag=="ture":
+                                   for l in range(0,len(core_trunk_int)):
+                                       T_vlan=[]
+                                       if 'Te' in core_trunk_int[l]:
+                                          core_trunk_int[l]=core_trunk_int[l].replace("nGigabitEthernet","")
+                                       if 'Gi' in core_trunk_int[l] and 'Te' not in core_trunk_int[l]:
+                                          core_trunk_int[l]=core_trunk_int[l].replace("gabitEthernet","")
+                                       if 'For' in core_trunk_int[l]:
+                                          core_trunk_int[l]=core_trunk_int[l].replace("tyGi","")
+                                       if core_trunk_int[l] in line:
+                                          get_flag="ture"
+                                          con=line.split()
+                                          if "," not in con[1]:
+                                              T_vlan.append(con[1])
+                                          else:
+                                              sub_con=con[1].split(',')
+                                              for x in range(0,len(sub_con)):
+                                                  if "-" not in sub_con[x]: 
+                                                     T_vlan.append(sub_con[x])
+                                                  else: 
+                                                     small_con=sub_con[x].split('-')
+                                                     for y in range(0,(int(small_con[1])-int(small_con[0])+int(1))):
+                                                         T_vlan.append(str(int(small_con[0])+y))
+                                          
+                                          for x in range(0,len(T_vlan)):
+                                                  if result[4]==T_vlan[x]:
+                                                     vlan_get_flag="ture"       
+                                       if "Port" in line or "port" in line:
+                                         res=line.split()
+                                         if res[0]=="Port" or res[0]=="port": 
+                                            start_flag="false"
+                          if "Port" in line or "port" in line:
+                             if "Vlans allowed on trunk" in line or "vlans allowed on trunk" in line: 
+                                start_flag="ture"
+                    output.close
+                    
+                    if get_flag=="false":
+                         filewrite.write(result[0]+"connected to "+devices[i]+"'s "+result[2]+","+" ap connected sw's core connect port has no any traffic with core switch")
+                         filewrite.write('\n')  
+                    if get_flag=="ture":
+                      if vlan_get_flag=="false": 
+                          filewrite.write(result[0]+"connected to "+devices[i]+"'s "+result[2]+","+" ap connected sw's core connect port has no traffic with core switchfor vlan "+result[4])
+                          filewrite.write('\n')
+                          T_vlan=[]
+                          vlan_get_flag="false"
+                          
+                          if "," not in content[1]:
+                             T_vlan.append(content[1])
+                          else:
+                            sub_con=content[1].split(',')
+                            for x in range(0,len(sub_con)):
+                                if "-" not in sub_con[x]:
+                                   T_vlan.append(sub_con[x])
+                                else:
+                                  small_con=sub_con[x].aplit('-')
+                                  for y in range(0,(int(small_con[1])-int(small_con[0])+int(1))):
+                                    T_vlan.append(str(int(small_con[0])+y))
+                                                   
+                          for x in range(0,len(T_vlan)):
+                                if result[4]==T_vlan[x]:
+                                   vlan_get_flag="ture"
+                          if vlan_get_flag=="ture":
+                               filewrite.write("   vlan "+result[4]+" is in ap connected sw "+devices[i]+" core conect port trunk allowed vlan")
+                               filewrite.write("\n")
+                          else:
+                               filewrite.write("   vlan "+result[4]+" is not in ap connected sw "+devices[i]+" core conect port trunk allowed vlan")
+                               filewrite.write("\n")             
+                   for n in range(0,len(layer3_Vlan)):
+                    if "-core-" in layer3_Vlan[n]:
+                      if result[4] not in layer3_Vlan[n]:
+                         filewrite.write("\n")     
+            
+if len(vlan_down_port_up)>int(0):
+       for j in range(0,len(vlan_down_port_up)):
+           filewrite.write(vlan_down_port_up[j])
+           filewrite.write("\n")
+filewrite.close()
+for i in range (0,len(devices)):
+    os.remove(devices[i]+"_vlan_brief.txt")
+    os.remove(devices[i]+"_interface.txt")
+    os.remove(devices[i]+"_auth_session.txt")
+    os.remove(devices[i]+"_int_trunk.txt")
+    os.remove(devices[i]+"_ip_interface.txt")
+filewrite=open("file_name.txt","w")
+filewrite.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
