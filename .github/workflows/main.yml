@@ -1,32 +1,18 @@
-- name: prepare inventory
-  hosts: localhost
-  gather_facts: false
+name: Run Python Script
 
-  tasks:
-    - name: run local script
-      script:
-        executable: python3
-        cmd: ansible_ini.py
-    - name: write data to inventory
-      copy:
-        src: "/home/pjiang/inventory_info.txt"
-        dest: "/home/pjiang/inventory"
+on: [push] # This workflow runs on every push to the repository
 
--  name: capture show output
-   hosts: routers
-   gather_facts: no
-   connection: local
+jobs:
+  build:
+    runs-on: ubuntu-latest # The job runs on a GitHub-hosted runner with the latest Ubuntu version
 
-   tasks:
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4 # This action checks out your repository code to the runner
 
-
-
-     - name: get version
-       ios_command:
-         commands: show version
-       register: ver
-
-     - name: save version to directory
-       copy:
-         content: "{{ ver.stdout | replace('\\n', '\n') }}"
-         dest: "/home/pjiang/{{ inventory_hostname }}_version.txt"
+    - name: Set up Python
+      uses: actions/setup-python@v5 # This action sets up the Python environment
+      with:
+        python-version: '3.10'
+    - name: Run Python script
+      run: python folder1/hello.py
