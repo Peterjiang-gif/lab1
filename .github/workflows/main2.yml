@@ -1,0 +1,36 @@
+name: Run Ansible Playbook
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch: # Allows manual trigger from the GitHub UI
+
+jobs:
+  run-playbooks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Ansible
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install ansible
+
+      - name: Setup SSH
+        run: |
+          # Ensure the .ssh directory exists
+          mkdir -p ~/.ssh/
+          # Write the private key to a file and set secure permissions
+          echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Add target host to known_hosts to prevent interactive prompts
+          ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+        shell: bash
+
+      - name: Write Inventory File
+        run: |
+          echo "${{ secrets.ANSIBLE_HOSTS }}" > inventory.yml
