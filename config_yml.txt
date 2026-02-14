@@ -1,0 +1,6 @@
+name: config int on network device 
+host all 
+roles : 
+  role1 
+  role2
+  role3 

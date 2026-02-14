@@ -1,0 +1,4 @@
+#jinja2 template file 
+interface {{ item.inft }}
+description {{ item.des }}
+ip address {{ item.ip }} {{ item.mask }}

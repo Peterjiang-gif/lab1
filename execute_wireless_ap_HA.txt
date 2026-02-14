@@ -1,0 +1,96 @@
+- name: prepare inventory
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: run local script
+      script:
+        executable: python3
+        cmd: ansible_ini.py
+    - name: write data to inventory
+      copy:
+        src: "/home/pjiang/inventory_info.txt"
+        dest: "/home/pjiang/inventory"
+
+
+
+-  name: capture show output
+   hosts: switches
+   gather_facts: no
+   connection: local
+
+   tasks:
+
+
+
+     - name: get vlan brief
+       ios_command:
+         commands: show vlan brief
+       register: vlanb
+
+     - name: save vlanb to directory
+       copy:
+         content: "{{ vlanb.stdout | replace('\\n', '\n') }}"
+         dest: "/home/pjiang/{{ inventory_hostname }}_vlan_brief.txt" 
+
+     - name: get interface
+       ios_command:
+         commands: show run | sec interface
+       register: interface
+
+     - name: save interface to directory
+       copy:
+         content: "{{ interface.stdout | replace('\\n', '\n') }}"
+         dest: "/home/pjiang/{{ inventory_hostname }}_interface.txt"
+     
+     - name: get ip interface
+       ios_command:
+         commands: show ip interface
+       register: ip_interface
+
+     - name: save interface to directory
+       copy:
+         content: "{{ ip_interface.stdout | replace('\\n', '\n') }}"
+         dest: "/home/pjiang/{{ inventory_hostname }}_ip_interface.txt"
+
+     - name: get int_auth
+       ios_command:
+         commands: show authentication sessions
+       register: intauth
+
+     - name: save intauth to directory
+       copy:
+         content: "{{ intauth.stdout | replace('\\n', '\n') }}"
+         dest: "/home/pjiang/{{ inventory_hostname }}_auth_session.txt"
+     
+     - name: get int_trunk
+       ios_command:
+         commands: show int trunk
+       register: trunk
+
+     - name: save int_trunk to directory
+       copy:
+         content: "{{ trunk.stdout | replace('\\n', '\n') }}"
+         dest: "/home/pjiang/{{ inventory_hostname }}_int_trunk.txt"
+     - name: add device name in device_list
+       shell: echo {{inventory_hostname}}  >> /home/pjiang/file_name.txt
+     
+     
+     - name: run local script
+       script:
+         executable: python3
+         cmd: ap_check_HA.py
+       delegate_to: localhost
+       run_once: true
+
+    - name: Send e-mail to a user, attaching files
+
+       mail:
+         host: "203.202.141.46"  //smtp server address 
+         subject: "Ansible-email"
+         body: "this is ansible result"
+         to: "peter.jiang@optus.com.au"
+         from: "peter@optusenterprise.com.au"
+         attach: "/home/pjiang/device_result.txt"
+       delegate_to: localhost
+    

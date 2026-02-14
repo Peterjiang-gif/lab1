@@ -1,0 +1,16 @@
+name: config router 
+host:routers 
+gather_facts:false 
+var_files: 
+  role/var.yml 
+tasks: 
+  name: collect config 
+    src:role1/tem.js 
+    dst:tem/config.cfg 
+   loop: "{{ interface[inventory_hostname] | default[] }}"
+  conection: localhost 
+  name: set config 
+   cicso_ios-ios_config: 
+     line: 
+      src: dst:tem/config.cfg 
+  

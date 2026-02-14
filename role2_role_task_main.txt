@@ -1,0 +1,35 @@
+name:set firewall 
+host:firewall 
+fact_gather:false 
+var_files: 
+  role_var 
+var:
+  provider:
+    username: "{{ ASA[fiewall][hosts][ASA][ansible_user] }}"
+    password: "{{ ASA[fiewall][hosts][ASA][ansible_ssh_pass] }}"
+task:
+- name:set security policy 
+ cisco_asa_asa_acl: 
+    interace :inside 
+    rule:permit_sales_server 
+    src_ip: 10.0.0.5 
+    dst_ip: 192.168.2.10 
+    protocol : tcp 
+    destination_port: 80 
+    action: permit 
+    state: present 
+    provider: "{{ provider }}" 
+  register: acl_result 
+  norify: 
+   - email for fw security policy 
+handlers:
+  name: email for fw security policy 
+     mail:
+         host: "203.202.141.46"  //smtp server address 
+         subject: "Ansible-email"
+         body: "email for fw security policy"
+         to: "peter.jiang@optus.com.au"
+         from: "peter@optusenterprise.com.au"
+     delegate_to:localhost 
+
+   
