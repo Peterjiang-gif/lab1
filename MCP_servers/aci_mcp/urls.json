@@ -1,0 +1,455 @@
+[
+  {
+    "Group": "L3",
+    "Endpoints": [
+      {
+        "URL": "/api/node/class/l3extOut.json",
+        "Name": "Layer 3 Out"
+      },
+      {
+        "URL": "/api/node/class/l3extDomP.json",
+        "Name": "L3 Domains"
+      },
+      {
+        "URL": "/api/node/class/ipv4Addr.json",
+        "Name": "IPv4 Addresses"
+      },
+      {
+        "URL": "/api/node/class/ipv4Dom.json",
+        "Name": "IPv4 Domains"
+      },
+      {
+        "URL": "/api/node/class/ipv4Entity.json",
+        "Name": "IPv4 Entities"
+      },
+      {
+        "URL": "/api/node/class/ipv4If.json",
+        "Name": "IPv4 Interfaces"
+      },
+      {
+        "URL": "/api/node/class/ipv4Inst.json",
+        "Name": "IPv4 Instances"
+      },
+      {
+        "URL": "/api/node/class/ipv4Nexthop.json",
+        "Name": "IPv4 Next Hop"
+      },
+      {
+        "URL": "/api/node/class/ipv4Route.json",
+        "Name": "IPv4 Routes"
+      },
+      {
+        "URL": "/api/node/class/isisAdjEp.json",
+        "Name": "ISIS Adjacency Endpoints"
+      },
+      {
+        "URL": "/api/node/class/isisDTEp.json",
+        "Name": "ISIS Discovered Tunnel Endpoints"
+      },
+      {
+        "URL": "/api/node/class/isisDom.json",
+        "Name": "ISIS Domains"
+      },
+      {
+        "URL": "/api/node/class/isisDomLvl.json",
+        "Name": "ISIS Domains Level"
+      },
+      {
+        "URL": "/api/node/class/isisEntity.json",
+        "Name": "ISIS Entities"
+      },
+      {
+        "URL": "/api/node/class/isisIf.json",
+        "Name": "ISIS Interfaces"
+      },
+      {
+        "URL": "/api/node/class/isisIfLvl.json",
+        "Name": "ISIS Interfaces Level"
+      },
+      {
+        "URL": "/api/node/class/isisInst.json",
+        "Name": "ISIS Instances"
+      },
+      {
+        "URL": "/api/node/class/isisNexthop.json",
+        "Name": "ISIS Next Hop"
+      },
+      {
+        "URL": "/api/node/class/isisRoute.json",
+        "Name": "ISIS Routes"
+      },
+      {
+        "URL": "/api/node/class/l3Ctx.json",
+        "Name": "L3 Contexts"
+      },
+      {
+        "URL": "/api/node/class/l3EncRtdIf.json",
+        "Name": "L3 Subinterfaces"
+      },
+      {
+        "URL": "/api/node/class/l3Inst.json",
+        "Name": "L3 Instances"
+      },
+      {
+        "URL": "/api/node/class/l3LbRtdIf.json",
+        "Name": "L3 Routed Loopback Interfaces"
+      },
+      {
+        "URL": "/api/node/class/l3RsEncPhysRtdConf.json",
+        "Name": "L3 Physical Interface Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l3RtdIf.json",
+        "Name": "L3 Routed Interfaces"
+      },
+      {
+        "URL": "/api/node/class/l3extInstP.json",
+        "Name": "L3Out Profiles"
+      },
+      {
+        "URL": "/api/node/class/l3extIp.json",
+        "Name": "L3Out IP Addresses"
+      },
+      {
+        "URL": "/api/node/class/l3extLIfP.json",
+        "Name": "L3 Logical Interface Profiles"
+      },
+      {
+        "URL": "/api/node/class/l3extLNodeP.json",
+        "Name": "L3 Logical Node Profiles"
+      },
+      {
+        "URL": "/api/node/class/l3extMember.json",
+        "Name": "L3Out Members"
+      },
+      {
+        "URL": "/api/node/class/l3extRsEctx.json",
+        "Name": "L3 Contexts Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l3extRsL3DomAtt.json",
+        "Name": "L3 Domains Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l3extRsNodeL3OutAtt.json",
+        "Name": "L3Out Node Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l3extRsPathL3OutAtt.json",
+        "Name": "L3Out Path Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l3extSubnet.json",
+        "Name": "L3 Subnets"
+      },
+      {
+        "URL": "/api/node/class/acllogDropL3Flow.json",
+        "Name": "L3Drops"
+      },
+      {
+        "URL": "/api/node/class/acllogDropL3Pkt.json",
+        "Name": "L3PktDrops"
+      },
+      {
+        "URL": "/api/node/class/ospfAdjEp.json",
+        "Name": "OSPF Adjacency Endpoints"
+      },
+      {
+        "URL": "/api/node/class/ospfArea.json",
+        "Name": "OSPF Areas"
+      },
+      {
+        "URL": "/api/node/class/ospfDb.json",
+        "Name": "OSPF Database"
+      },
+      {
+        "URL": "/api/node/class/ospfDom.json",
+        "Name": "OSPF Domains"
+      },
+      {
+        "URL": "/api/node/class/ospfEntity.json",
+        "Name": "OSPF Entities"
+      },
+      {
+        "URL": "/api/node/class/ospfExtP.json",
+        "Name": "OSPF External Profiles"
+      },
+      {
+        "URL": "/api/node/class/ospfIf.json",
+        "Name": "OSPF Interfaces"
+      },
+      {
+        "URL": "/api/node/class/ospfInst.json",
+        "Name": "OSPF Instances"
+      },
+      {
+        "URL": "/api/node/class/ospfRoute.json",
+        "Name": "OSPF Routes"
+      },
+      {
+        "URL": "/api/node/class/ospfUcNexthop.json",
+        "Name": "OSPF Unicast Next Hop"
+      },
+      {
+        "URL": "/api/node/class/uribv4Db.json",
+        "Name": "Unicast Route Database"
+      },
+      {
+        "URL": "/api/node/class/uribv4Dom.json",
+        "Name": "Unicast Route Domains"
+      },
+      {
+        "URL": "/api/node/class/uribv4Entity.json",
+        "Name": "Unicast Route Entities"
+      },
+      {
+        "URL": "/api/node/class/uribv4Nexthop.json",
+        "Name": "Unicast Route Next Hop"
+      },
+      {
+        "URL": "/api/node/class/uribv4Route.json",
+        "Name": "Unicast Routes"
+      }
+    ]
+  },
+  {
+    "Group": "L2",
+    "Endpoints": [
+      {
+        "URL": "/api/node/class/l2extOut.json",
+        "Name": "Layer 2 Out"
+      },
+      {
+        "URL": "/api/node/class/fvnsEncapBlk.json",
+        "Name": "VLAN Encapsulation Blocks"
+      },
+      {
+        "URL": "/api/node/class/fvnsVlanInstP.json",
+        "Name": "VLAN Namespace Policies"
+      },
+      {
+        "URL": "/api/node/class/infraRsVlanNs.json",
+        "Name": "VLAN Namespace Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l2BD.json",
+        "Name": "L2 Bridge Domains"
+      },
+      {
+        "URL": "/api/node/class/l2ExtIf.json",
+        "Name": "L2 External Interfaces"
+      },
+      {
+        "URL": "/api/node/class/l2RsEthIf.json",
+        "Name": "L2 Interface Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l2extInstP.json",
+        "Name": "L2 External Instance Profiles"
+      },
+      {
+        "URL": "/api/node/class/l2extLIfP.json",
+        "Name": "L2 External Logical Interface Profiles"
+      },
+      {
+        "URL": "/api/node/class/l2extLNodeP.json",
+        "Name": "L2 External Logical Node Profiles"
+      },
+      {
+        "URL": "/api/node/class/l2extRsEBd.json",
+        "Name": "L2 EPG Bridge Domain Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/l2extRsPathL2OutAtt.json",
+        "Name": "L2Out Paths"
+      },
+      {
+        "URL": "/api/node/class/vlanCktEp.json",
+        "Name": "VLAN Endpoint Group Encapsulation"
+      }
+    ]
+  },
+  {
+    "Group": "Fabric",
+    "Endpoints": [
+      {
+        "URL": "/api/node/class/fabricNode.json",
+        "Name": "Fabric Nodes"
+      },
+      {
+        "URL": "/api/node/class/fabricPod.json",
+        "Name": "Fabric Pods"
+      },
+      {
+        "URL": "/api/node/class/fabricPath.json",
+        "Name": "Fabric Paths"
+      },
+      {
+        "URL": "/api/node/class/fabricExtPathEpCont.json",
+        "Name": "Fabric Extended Path Endpoint Containers"
+      },
+      {
+        "URL": "/api/node/class/fabricInst.json",
+        "Name": "Fabric Instances"
+      },
+      {
+        "URL": "/api/node/class/fabricLink.json",
+        "Name": "Fabric Links"
+      },
+      {
+        "URL": "/api/node/class/fabricLinkCont.json",
+        "Name": "Fabric Link Containers"
+      },
+      {
+        "URL": "/api/node/class/fabricLooseLink.json",
+        "Name": "Fabric Loose Links"
+      },
+      {
+        "URL": "/api/node/class/fabricLooseNode.json",
+        "Name": "Fabric Loose Nodes"
+      },
+      {
+        "URL": "/api/node/class/fabricPathEp.json",
+        "Name": "Fabric Path Endpoints"
+      },
+      {
+        "URL": "/api/node/class/fabricPathEpCont.json",
+        "Name": "Fabric Path Endpoint Containers"
+      },
+      {
+        "URL": "/api/node/class/fabricProtPathEpCont.json",
+        "Name": "Fabric Protected Path Endpoint Containers"
+      }
+    ]
+  },
+  {
+    "Group": "Access Policies",
+    "Endpoints": [
+      {
+        "URL": "/api/node/class/infraSpineP.json",
+        "Name": "Spine Switch Profiles"
+      },
+      {
+        "URL": "/api/node/class/infraAccBndlGrp.json",
+        "Name": "Access Bundle Groups"
+      },
+      {
+        "URL": "/api/node/class/infraCont.json",
+        "Name": "Controllers"
+      },
+      {
+        "URL": "/api/node/class/infraFexP.json",
+        "Name": "FEX Policies"
+      },
+      {
+        "URL": "/api/node/class/infraRsAccBaseGrp.json",
+        "Name": "Access Policy Group Source Relationships"
+      },
+      {
+        "URL": "/api/node/class/infraRsDomP.json",
+        "Name": "Domain Profile Source Relationships"
+      }
+    ]
+  },
+  {
+    "Group": "Contracts",
+    "Endpoints": [
+      {
+        "URL": "/api/node/class/vzBrCP.json",
+        "Name": "Contracts"
+      },
+      {
+        "URL": "/api/node/class/vzEntry.json",
+        "Name": "vzEntries"
+      },
+      {
+        "URL": "/api/node/class/vzSubj.json",
+        "Name": "Contract Subjects"
+      },
+      {
+        "URL": "/api/node/class/vzAny.json",
+        "Name": "vzAny"
+      },
+      {
+        "URL": "/api/node/class/vzFilter.json",
+        "Name": "vzFilters"
+      },
+      {
+        "URL": "/api/node/class/vzRsAnyToCons.json",
+        "Name": "vzAny To Consumers"
+      },
+      {
+        "URL": "/api/node/class/vzRsAnyToProv.json",
+        "Name": "vzAny To Providers"
+      },
+      {
+        "URL": "/api/node/class/vzRsDenyRule.json",
+        "Name": "vzDeny Rules"
+      },
+      {
+        "URL": "/api/node/class/vzRsSubjFiltAtt.json",
+        "Name": "Contract Subjects Filter Attributes"
+      },
+      {
+        "URL": "/api/node/class/vzRtCons.json",
+        "Name": "Contract Consumers Root"
+      },
+      {
+        "URL": "/api/node/class/vzRtProv.json",
+        "Name": "Contract Providers Root"
+      },
+      {
+        "URL": "/api/node/class/vzRuleOwner.json",
+        "Name": "vzRule Owner"
+      },
+      {
+        "URL": "/api/node/class/vzTaboo.json",
+        "Name": "vzTaboo"
+      }
+    ]
+  },
+  {
+    "Group": "BGP",
+    "Endpoints": [
+      {
+        "URL": "/api/node/class/bgpRRNodePEp.json",
+        "Name": "BGP Route Reflectors"
+      },
+      {
+        "URL": "/api/node/class/bgpDom.json",
+        "Name": "BGP Domains"
+      },
+      {
+        "URL": "/api/node/class/bgpDomAf.json",
+        "Name": "BGP Domain Address Families"
+      },
+      {
+        "URL": "/api/node/class/bgpEntity.json",
+        "Name": "BGP Entities"
+      },
+      {
+        "URL": "/api/node/class/bgpInst.json",
+        "Name": "BGP Instances"
+      },
+      {
+        "URL": "/api/node/class/bgpInstPol.json",
+        "Name": "BGP Instances Policy"
+      },
+      {
+        "URL": "/api/node/class/bgpPeer.json",
+        "Name": "BGP Peers"
+      },
+      {
+        "URL": "/api/node/class/bgpPeerAfEntry.json",
+        "Name": "BGP Peers AF Entries"
+      },
+      {
+        "URL": "/api/node/class/bgpPeerEntry.json",
+        "Name": "BGP Peers Entries"
+      },
+      {
+        "URL": "/api/node/class/bgpRRP.json",
+        "Name": "BGP Route Reflector Policies"
+      }
+    ]
+  },
