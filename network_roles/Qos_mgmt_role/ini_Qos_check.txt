@@ -1,0 +1,60 @@
+from datetime import datetime
+import os 
+import re
+filename=[]
+device=[]
+filewrite=open('device_int_Qos_drop.txt','a') 
+for file in os.listdir():
+    if file.endswith("int_policy_map.txt"):
+       filename.append(file)
+       rec=file.split('+')
+       device.append(rec[0])
+m=len(filename)
+if m>int(0):
+  for i in range(0,m):
+      
+    Qos_drop_result=[]
+    with open (filename[i],'r') as output: 
+       start_flag="false"
+       class_map=""
+       for line in output: 
+         if start_flag=="ture":
+            if "offered rate" in line and "drop rate" in line:  
+                value=class_map+":"+line
+                Qos_drop_result.append(value) 
+            if "Class-map:" in line or "class-map:" in line:
+               result=line.split()
+               if result[0]=="Class-map:" or result[0]=="class-map:":
+                  start_flag="false"
+                  class_map=""
+         if "Class-map:" in line or "class-map:" in line:
+            result=line.split()
+            if result[0]=="Class-map:" or result[0]=="class-map:":
+               start_flag="ture"
+               class_map=result[1]
+    output.close
+
+    filewrite.write('\n')
+    filewrite.write(device[i])
+    filewrite.write("primary int Qos:")
+    filewrite.write('\n')
+    if len(Qos_drop_result) > int(0):
+       all_zero="ture"
+       for j in range(0,len(Qos_drop_result)):
+           res=Qos_drop_result[j].split(':')
+           info=res[1].split()
+           for k in range(0,len(info)):
+                  if info[k]=="drop" and (k+2)<len(info):
+                     if info[k+2]!="0000":
+                        all_zero="false"
+       if all_zero=="ture":
+          filewrite.write("primary interface good, all Qos class drop rate 0")
+          filewrite.write('\n')
+          filewrite.write('\n')
+       else:
+             filewrite.write('\n')
+       for j in range(0,len(Qos_drop_result)): 
+           filewrite.write(Qos_drop_result[j])    
+           filewrite.write('\n')
+filewrite.close()
+           

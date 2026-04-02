@@ -1,0 +1,169 @@
+ GigabitEthernet0/0 
+
+  Service-policy output: QPM_pm-shape-wan-out-80M
+
+    Class-map: class-default (match-any)  
+      12158727878 packets, 7539143809585 bytes
+      30 second offered rate 21360000 bps, drop rate 0000 bps
+      Match: any 
+      Queueing
+      queue limit 64 packets
+      (queue depth/total drops/no-buffer drops) 0/3090558/0
+      (pkts output/bytes output) 12159287029/7542386663614
+      shape (average) cir 80000000, bc 320000, be 320000
+      target shape rate 80000000
+
+      Service-policy : QPM_pm-wan-out
+
+        queue stats for all priority classes:
+          Queueing
+          queue limit 64 packets
+          (queue depth/total drops/no-buffer drops) 0/28232/0
+          (pkts output/bytes output) 447789585/282889514282
+
+        Class-map: QPM_cm-Premium-RT (match-any)  
+          324605156 packets, 181279064258 bytes
+          30 second offered rate 3769000 bps, drop rate 0000 bps
+          Match: ip dscp ef (46)
+            324605156 packets, 181279064242 bytes
+            30 second rate 3769000 bps
+          Priority: 20% (16000 kbps), burst bytes 400000, b/w exceed drops: 9979
+          
+
+        Class-map: QPM_cm-Premium-NRT (match-any)  
+          123232341 packets, 101640164158 bytes
+          30 second offered rate 6000 bps, drop rate 0000 bps
+          Match: ip dscp af41 (34)
+            123232218 packets, 101640147420 bytes
+            30 second rate 6000 bps
+          Match: ip dscp af42 (36)
+            123 packets, 16738 bytes
+            30 second rate 0 bps
+          Priority: 9% (7200 kbps), burst bytes 180000, b/w exceed drops: 9698
+          
+          
+        Class-map: QPM_cm-Business-High (match-any)  
+          112296656 packets, 55238302786 bytes
+          30 second offered rate 419000 bps, drop rate 0000 bps
+          Match: ip dscp cs2 (16)
+            4017135 packets, 1324547660 bytes
+            30 second rate 1000 bps
+          Match: ip dscp af21 (18)
+            48696367 packets, 38824783354 bytes
+            30 second rate 216000 bps
+          Match: ip dscp af22 (20)
+            58992951 packets, 14762069802 bytes
+            30 second rate 200000 bps
+          Match: ip dscp af23 (22)
+            590203 packets, 326901970 bytes
+            30 second rate 0 bps
+          Queueing
+          queue limit 512 packets
+          (queue depth/total drops/no-buffer drops) 0/5415/0
+          (pkts output/bytes output) 112290756/55235830090
+          bandwidth 27% (21600 kbps)
+          police:
+              cir 27 %
+              cir 21600000 bps, bc 675000 bytes
+            conformed 112296171 packets, 55237611908 bytes; actions:
+              transmit 
+            exceeded 485 packets, 690878 bytes; actions:
+              drop 
+            conformed 419000 bps, exceeded 0000 bps
+            Exp-weight-constant: 9 (1/512)
+            Mean queue depth: 0 packets
+            dscp       Transmitted         Random drop      Tail drop          Minimum        Maximum     Mark
+                    pkts/bytes            pkts/bytes       pkts/bytes          thresh         thresh     prob
+            
+            cs2      4017135/1324547660      0/0              0/0                100           200  1/10
+            af21    48695845/38824058814     41/38086          0/0                100           200  1/10
+            af22    58992935/14762062970     12/2408           0/0                 80           200  1/10
+            af23      590203/326901970       0/0              0/0                 60           200  1/10
+          
+          
+        Class-map: QPM_cm-Business-Low (match-any)  
+          2675694857 packets, 861481207324 bytes
+          30 second offered rate 3391000 bps, drop rate 0000 bps
+          Match: ip dscp af11 (10)
+            2672602917 packets, 857490043102 bytes
+            30 second rate 3391000 bps
+          Match: ip dscp af12 (12)
+            3091940 packets, 3991164088 bytes
+            30 second rate 0 bps
+          Match: ip dscp af13 (14)
+            1 packets, 134 bytes
+            30 second rate 0 bps
+          Queueing
+          queue limit 512 packets
+          (queue depth/total drops/no-buffer drops) 0/185146/0
+          (pkts output/bytes output) 2675451747/861353415826
+          bandwidth 27% (21600 kbps)
+          police:
+              cir 27 %
+              cir 21600000 bps, bc 675000 bytes
+            conformed 2675636894 packets, 861407399284 bytes; actions:
+              transmit 
+            exceeded 57965 packets, 73808174 bytes; actions:
+              drop 
+            conformed 3391000 bps, exceeded 0000 bps
+            Exp-weight-constant: 9 (1/512)
+            Mean queue depth: 0 packets
+            dscp       Transmitted         Random drop      Tail drop          Minimum        Maximum     Mark
+                    pkts/bytes            pkts/bytes       pkts/bytes          thresh         thresh     prob
+            
+            af11   2672360560/857362550432  17960/5958224   166525/47857054         100           200  1/10
+            af12     3091829/3991029598      3/1698          16/2144              80           200  1/10
+            af13           1/134             0/0              0/0                 60           200  1/10
+          
+          
+        Class-map: QPM_cm-Standard (match-any)  
+          8859048042 packets, 6319902365379 bytes
+          30 second offered rate 13755000 bps, drop rate 0000 bps
+          Match: ip dscp default (0)
+            8859048043 packets, 6319902370483 bytes
+            30 second rate 13755000 bps
+          Queueing
+          queue limit 256 packets
+          (queue depth/total drops/no-buffer drops) 0/2731075/0
+          (pkts output/bytes output) 8856316968/6318249444304
+          bandwidth 11% (8800 kbps)
+            Exp-weight-constant: 9 (1/512)
+            Mean queue depth: 0 packets
+            dscp       Transmitted         Random drop      Tail drop          Minimum        Maximum     Mark
+                    pkts/bytes            pkts/bytes       pkts/bytes          thresh         thresh     prob
+            
+            default8856316977/6318249444844 330167/249093306 2400899/1403832333         50           100  1/10
+          
+          
+        Class-map: QPM_cm-Network (match-any)  
+          23993533 packets, 5166525058 bytes
+          30 second offered rate 6000 bps, drop rate 0000 bps
+          Match: ip dscp cs6 (48)
+            23973944 packets, 5163281700 bytes
+            30 second rate 6000 bps
+          Match: ip dscp cs7 (56)
+            19589 packets, 3243358 bytes
+            30 second rate 0 bps
+          Queueing
+          queue limit 512 packets
+          (queue depth/total drops/no-buffer drops) 0/404/0
+          (pkts output/bytes output) 23993129/5166459539
+          bandwidth 5% (4000 kbps)
+            Exp-weight-constant: 9 (1/512)
+            Mean queue depth: 0 packets
+            dscp       Transmitted         Random drop      Tail drop          Minimum        Maximum     Mark
+                    pkts/bytes            pkts/bytes       pkts/bytes          thresh         thresh     prob
+            
+            cs6     23973944/5163281700      0/0              0/0                100           200  1/10
+            cs7        19589/3243358         0/0              0/0                100           200  1/10
+          
+          
+        Class-map: class-default (match-any)  
+          39857300 packets, 14436177496 bytes
+          30 second offered rate 13000 bps, drop rate 0000 bps
+          Match: any 
+          Queueing
+          queue limit 64 packets
+          (queue depth/total drops/no-buffer drops/flowdrops) 0/148841/0/145677
+          (pkts output/bytes output) 43444844/19491999573
+          Fair-queue: per-flow queue limit 16 packets
