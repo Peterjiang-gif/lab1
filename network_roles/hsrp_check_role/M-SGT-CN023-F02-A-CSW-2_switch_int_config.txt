@@ -1,0 +1,4566 @@
+feature interface-vlan
+logging level interface-vlan 5
+ip tacacs source-interface loopback0
+snmp-server source-interface trap loopback0
+interface mgmt0
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-1 Ethernet5/2 ***
+  vrf member management
+interface Vlan1
+  no ip redirects
+  no ipv6 redirects
+interface Vlan5
+  no ip redirects
+  ip address 10.99.34.17/28
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 5 
+    preempt 
+    ip 10.99.34.30
+  description Network_Mgmt
+  no shutdown
+interface Vlan12
+  no ip redirects
+  ip address 10.74.49.251/24
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 12 
+    preempt 
+    priority 120
+    ip 10.74.49.254
+  description Unix System
+  shutdown
+interface Vlan13
+  no ip redirects
+  ip address 10.74.52.252/23
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 13 
+    preempt 
+    ip 10.74.59.254
+  description W2K System
+  no shutdown
+interface Vlan14
+  no ip redirects
+  ip address 10.74.51.251/23
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  ip arp 10.74.50.132 0060.481C.555B
+  standby 14 ip 10.74.51.254
+  standby 14 priority 110
+  description SAN System
+  no shutdown
+interface Vlan15
+  no ip redirects
+  ip address 10.74.60.123/25
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  standby 15 ip 10.74.60.126
+  standby 15 priority 120
+  description IBM#15
+  no shutdown
+interface Vlan16
+  no ip redirects
+  ip address 10.0.0.251/24
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 16 
+    preempt 
+    ip 10.0.0.254
+  ip eigrp 1 
+  description IBM#16
+  no shutdown
+interface Vlan17
+  no ip redirects
+  ip address 10.0.255.251/24
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 17 
+    preempt 
+    ip 10.0.255.254
+  description IBM#17
+  no shutdown
+interface Vlan19
+  ip access-group Secure_VLAN_19 out
+  no ip redirects
+  ip address 10.74.52.59/26
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 19 
+    preempt 
+    ip 10.74.52.62
+  description IPS Mgmt
+  no shutdown
+interface Vlan20
+  no ip redirects
+  ip address 10.74.56.60/26
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 20 
+    preempt 
+    ip 10.74.56.62
+  description Wireless Management VLAN
+  no shutdown
+interface Vlan21
+  no ip redirects
+  ip address 10.74.53.251/24
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 21 
+    preempt 
+    ip 10.74.53.254
+  description vMotion
+  no shutdown
+interface Vlan22
+  no ip redirects
+  ip address 10.74.61.29/27
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 22 
+    preempt 
+    priority 110
+    ip 10.74.61.30
+  description Vulnerability_Vlan
+  no shutdown
+interface Vlan24
+  no ip redirects
+  ip address 10.74.54.251/24
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 24 
+    preempt 
+    ip 10.74.54.254
+    ip eigrp 1 
+  description Server Mgmt 
+  no shutdown
+interface Vlan25
+  no ip redirects
+  ip address 10.74.63.60/26
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 25 
+    preempt 
+    ip 10.74.63.62
+  description CUCM VOICE
+  no shutdown
+interface Vlan26
+  no ip redirects
+  ip address 10.74.63.124/26
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 26 
+    preempt 
+    ip 10.74.63.126
+  description CUCM MGMT
+  no shutdown
+interface Vlan59
+  no ip redirects
+  ip address 10.74.55.6/29
+  no ipv6 redirects
+  ip router eigrp 1
+  ip delay eigrp 1 100
+  description WAN_Primary
+  no shutdown
+  mtu 9216
+interface Vlan60
+  no ip redirects
+  ip address 10.74.52.124/26
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 60 
+    preempt 
+    priority 105
+    ip 10.74.52.126
+  description DataPowerAppliance 
+  no shutdown
+interface Vlan71
+  no ip redirects
+  ip address 10.74.52.140/28
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 71 
+    preempt 
+    priority 110
+    ip 10.74.52.142
+  description :Connected to LAN Terminal_Server_Secondary_COnnection
+  no shutdown
+interface Vlan220
+  no ip redirects
+  ip address 10.74.57.59/26
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 220 
+    preempt 
+    ip 10.74.57.62
+  description ESX_vMotion
+  no shutdown
+interface Vlan221
+  no ip redirects
+  ip address 10.74.57.123/26
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 221 
+    preempt 
+    ip 10.74.57.126
+  description ESX_Svc_Con
+  no shutdown
+interface Vlan222
+  no ip redirects
+  ip address 10.74.57.188/26
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 222 
+    preempt 
+    ip 10.74.57.190
+  description AppDirector-VIP
+  no shutdown
+interface Vlan252
+  no ip redirects
+  ip address 10.74.58.1/30
+  no ipv6 redirects
+  ip router eigrp 1
+  description Core_DIST#2
+  no shutdown
+interface Vlan253
+  no ip redirects
+  ip address 10.74.58.5/30
+  no ipv6 redirects
+  ip router eigrp 1
+  description Core_DIST#1
+  no shutdown
+interface Vlan501
+  no ip redirects
+  ip address 10.74.56.123/26
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 51 
+    preempt 
+    ip 10.74.56.126
+  description UC_Private_Vlan#1
+  no shutdown
+interface Vlan502
+  no ip redirects
+  ip address 10.74.58.187/26
+  no ipv6 redirects
+  ip passive-interface eigrp 1
+  hsrp 52 
+    preempt 
+    ip 10.74.58.190
+  description UC_Private_Vlan#2
+  no shutdown
+interface Vlan600
+  no ip redirects
+  ip address 10.74.62.251/24
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 61 
+    preempt 
+    ip 10.74.62.254
+  description Iscsi
+  no shutdown
+interface Vlan601
+  no ip redirects
+  ip address 10.74.52.187/27
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 62 
+    preempt 
+    ip 10.74.52.190
+  description Replication
+  no shutdown
+interface Vlan900
+  no ip redirects
+  ip address 10.74.58.14/29
+  no ipv6 redirects
+  ip router eigrp 1
+  description WAN_Data#1
+  no shutdown
+  delay 100
+interface Vlan901
+  no ip redirects
+  ip address 10.74.58.30/29
+  no ipv6 redirects
+  ip router eigrp 1
+  description WAN_Mgmt#1
+  no shutdown
+  mtu 9216
+interface Vlan902
+  no ip redirects
+  ip address 10.74.58.13/29
+  no ipv6 redirects
+  ip router eigrp 1
+  description WAN_Data#2
+  no shutdown
+  delay 100
+interface Vlan905
+  no ip redirects
+  ip address 10.74.58.45/29
+  no ipv6 redirects
+  ip router eigrp 1
+  ip passive-interface eigrp 1
+  hsrp 95 
+    preempt 
+    ip 10.74.58.46
+  description Riverbed_Domain_Aux
+  no shutdown
+interface port-channel10
+  description :vPC Peer-Link to M-SGT-CN023-F02-A-LA-CSW-2-Corporate_Zone
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 1-58,60-513,515-899,904-4094
+  spanning-tree port type network
+  vpc peer-link
+interface port-channel20
+  description :L3 Link to M-SGT-CN023-F02-A-LA-CSW-2-Corporate_Zone
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,12-17,19-21,24,58-60,71,220-222
+  switchport trunk allowed vlan add 252-253,515-516,518
+  spanning-tree port type network
+interface port-channel30
+  description :VPC for CUCM MGMT
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 26
+  spanning-tree port type edge
+  vpc 30
+interface port-channel31
+  description :VPC for CUCM VOICE
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 25
+  spanning-tree port type edge
+  vpc 31
+interface port-channel101
+  description FEX 101
+  switchport
+  switchport mode fex-fabric
+  fex associate 101
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel103
+  description FEX 103
+  switchport
+  switchport mode fex-fabric
+  fex associate 103
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel105
+  description FEX 105
+  switchport
+  switchport mode fex-fabric
+  fex associate 105
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel107
+  description FEX 107
+  switchport
+  switchport mode fex-fabric
+  fex associate 107
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel109
+  description FEX 109
+  switchport
+  switchport mode fex-fabric
+  fex associate 109
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel111
+  description FEX 111
+  switchport
+  switchport mode fex-fabric
+  fex associate 111
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel113
+  description FEX 113
+  switchport
+  switchport mode fex-fabric
+  fex associate 113
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel115
+  description FEX 115
+  switchport
+  switchport mode fex-fabric
+  fex associate 115
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel117
+  description FEX 117
+  switchport
+  switchport mode fex-fabric
+  fex associate 117
+  service-policy type queuing input Custom-8e-4q4q-in
+  service-policy type queuing output Custom-8e-4q4q-out
+interface port-channel119
+  description FEX 119
+  switchport
+  switchport mode fex-fabric
+  fex associate 119
+  storm-control broadcast level 1.00
+  service-policy type queuing input Custom-8e-4q4q-in
+interface port-channel121
+  switchport
+  switchport mode fex-fabric
+  fex associate 121
+  storm-control broadcast level 1.00
+interface port-channel123
+  switchport
+  switchport mode fex-fabric
+  fex associate 123
+  storm-control broadcast level 1.00
+interface port-channel200
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  vpc 200
+interface port-channel201
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  vpc 201
+interface port-channel202
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  speed 1000
+  duplex full
+  vpc 202
+interface port-channel203
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  vpc 203
+interface port-channel204
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  speed 1000
+  duplex full
+  vpc 204
+interface port-channel205
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  speed 1000
+  duplex full
+  vpc 205
+interface port-channel206
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  speed 1000
+  duplex full
+  vpc 206
+interface port-channel208
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24,600-601
+  spanning-tree port type edge
+  speed 10000
+  duplex full
+interface port-channel209
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  speed 1000
+  duplex full
+interface port-channel210
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  speed 1000
+  duplex full
+interface port-channel300
+  description :VPC for M-SGT-CN023-F02-A-WL-WLC-1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 20
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  vpc 300
+interface port-channel1000
+  description OTV-Inside-interface
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 14-17,515-516,518,1000
+  mtu 9216
+  vpc 100
+interface port-channel2000
+  description OTV-Inside-interface
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 14-17,515-516,518,1000
+  mtu 9216
+  vpc 101
+interface Ethernet1/1
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-101
+  switchport
+  switchport mode fex-fabric
+  fex associate 101
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 101
+  no shutdown
+interface Ethernet1/2
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-103
+  switchport
+  switchport mode fex-fabric
+  fex associate 103
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 103
+  no shutdown
+interface Ethernet1/3
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-105
+  switchport
+  switchport mode fex-fabric
+  fex associate 105
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 105
+  no shutdown
+interface Ethernet1/4
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-107
+  switchport
+  switchport mode fex-fabric
+  fex associate 107
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 107
+  no shutdown
+interface Ethernet1/5
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-109
+  switchport
+  switchport mode fex-fabric
+  fex associate 109
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 109
+  no shutdown
+interface Ethernet1/6
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-111
+  switchport
+  switchport mode fex-fabric
+  fex associate 111
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 111
+  no shutdown
+interface Ethernet1/7
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-113
+  switchport
+  switchport mode fex-fabric
+  fex associate 113
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 113
+  no shutdown
+interface Ethernet1/8
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-115
+  switchport
+  switchport mode fex-fabric
+  fex associate 115
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 115
+  no shutdown
+interface Ethernet1/9
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-117
+  switchport
+  switchport mode fex-fabric
+  fex associate 117
+  no snmp trap link-status
+  channel-group 117
+  no shutdown
+interface Ethernet1/10
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-119
+  switchport
+  switchport mode fex-fabric
+  fex associate 119
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 119
+  no shutdown
+interface Ethernet1/11
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-121
+  switchport
+  switchport mode fex-fabric
+  fex associate 121
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 121
+  no shutdown
+interface Ethernet1/12
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-123
+  switchport
+  switchport mode fex-fabric
+  fex associate 123
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 123
+  no shutdown
+interface Ethernet1/15
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet1/16
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet1/17
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet1/18
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet1/19
+  description *** Unmanaged LAN Interface ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 14-17,515-516,518,1000
+  mtu 9216
+  no snmp trap link-status
+  channel-group 1000
+  no shutdown
+interface Ethernet1/20
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet1/21
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet1/22
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet1/23
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet1/23 *** - :L3 Link to M-SGT-CN023-F02-A-LA-CSW-2-Corpora
+te_Zone
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,12-17,19-21,24,58-60,71,220-222
+  switchport trunk allowed vlan add 252-253,515-516,518
+  channel-group 20 mode active
+  no shutdown
+interface Ethernet1/24
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet1/24 *** - :vPC Peer-Link to M-SGT-CN023-F02-A-LA-CSW-2-C
+orporate_Zone
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 1-58,60-513,515-899,904-4094
+  spanning-tree port type network
+  channel-group 10 mode active
+  no shutdown
+interface Ethernet2/1
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-101
+  switchport
+  switchport mode fex-fabric
+  fex associate 101
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 101
+  no shutdown
+interface Ethernet2/2
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-103
+  switchport
+  switchport mode fex-fabric
+  fex associate 103
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 103
+  no shutdown
+interface Ethernet2/3
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-105
+  switchport
+  switchport mode fex-fabric
+  fex associate 105
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 105
+  no shutdown
+interface Ethernet2/4
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-107
+  switchport
+  switchport mode fex-fabric
+  fex associate 107
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 107
+  no shutdown
+interface Ethernet2/5
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-109
+  switchport
+  switchport mode fex-fabric
+  fex associate 109
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 109
+  no shutdown
+interface Ethernet2/6
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-111
+  switchport
+  switchport mode fex-fabric
+  fex associate 111
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 111
+  no shutdown
+interface Ethernet2/7
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-113
+  switchport
+  switchport mode fex-fabric
+  fex associate 113
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 113
+  no shutdown
+interface Ethernet2/8
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-115
+  switchport
+  switchport mode fex-fabric
+  fex associate 115
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 115
+  no shutdown
+interface Ethernet2/9
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-117
+  switchport
+  switchport mode fex-fabric
+  fex associate 117
+  no snmp trap link-status
+  channel-group 117
+  no shutdown
+interface Ethernet2/10
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-119
+  switchport
+  switchport mode fex-fabric
+  fex associate 119
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 119
+  no shutdown
+interface Ethernet2/11
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-121
+  switchport
+  switchport mode fex-fabric
+  fex associate 121
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 121
+  no shutdown
+interface Ethernet2/12
+  description *** Unmanaged LAN Interface *** - Link to M-SGT-CN023-F02-A-NX-CORE-FEX-123
+  switchport
+  switchport mode fex-fabric
+  fex associate 123
+  no snmp trap link-status
+  storm-control broadcast level 1.00
+  channel-group 123
+  no shutdown
+interface Ethernet2/15
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet2/16
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet2/17
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet2/18
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet2/19
+  description *** Unmanaged LAN Interface ***
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 14-17,515-516,518,1000
+  mtu 9216
+  no snmp trap link-status
+  channel-group 2000
+  no shutdown
+interface Ethernet2/20
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet2/21
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet2/22
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet2/23
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet2/23 *** - :L3 Link to M-SGT-CN023-F02-A-LA-CSW-2-Corpora
+te_Zone
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 5,12-17,19-21,24,58-60,71,220-222
+  switchport trunk allowed vlan add 252-253,515-516,518
+  channel-group 20 mode active
+  no shutdown
+interface Ethernet2/24
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet2/24 *** - :vPC Peer-Link to M-SGT-CN023-F02-A-LA-CSW-2-C
+orporate_Zone
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 1-58,60-513,515-899,904-4094
+  spanning-tree port type network
+  channel-group 10 mode active
+  no shutdown
+interface Ethernet5/1
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/2
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-1 mgmt0 *** - System Default
+  switchport
+  switchport access vlan 5
+  speed 1000
+  duplex full
+  no shutdown
+interface Ethernet5/3
+  description *** Unmanaged LAN Interface *** - :L3 Link to CUCM LOM
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 26
+  no snmp trap link-status
+  channel-group 30
+  no shutdown
+interface Ethernet5/4
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/5
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/6
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet5/7
+  description *** Unmanaged LAN Interface *** - :Link to STHCN023CN0001, AUX
+  switchport
+  switchport access vlan 5
+  speed 1000
+  no snmp trap link-status
+  no shutdown
+interface Ethernet5/8
+  description *** Unmanaged LAN Interface *** - IPS Mgmt
+  switchport
+  switchport access vlan 19
+  no snmp trap link-status
+  no shutdown
+interface Ethernet5/9
+  description *** Unmanaged LAN Interface *** - :Link to STHCN023CN0001, Primary
+  switchport
+  switchport access vlan 905
+  no snmp trap link-status
+  no shutdown
+interface Ethernet5/10
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-RAN-R-1 GigabitEthernet0/1 *** - :Link to M-SGT-CN023-F02-A-RAN-R-1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 900-901
+  speed 1000
+  duplex full
+  mtu 9216
+  no shutdown
+interface Ethernet5/11
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/12
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/13
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/14
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/15
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+
+
+interface Ethernet5/16
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/25
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/26
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/27
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/28
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/29
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/30
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/31
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/32
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/41
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/42
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/43
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+  no shutdown
+interface Ethernet5/44
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/45
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/46
+  description *** Unmanaged LAN Interface ***
+  no snmp trap link-status
+interface Ethernet5/47
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-BAN-R-1 TenGigabitEthernet1/0/0.59 *** - :Uplink to M-SGT-CN023-F02-A-BAN-R
+-1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 59,901
+  mtu 9216
+  no shutdown
+interface Ethernet5/48
+  description *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet5/48 *** - vPC Peer-Keepalive to M-SGT-CN023-F02-A-LA-CSW
+-2-Corporate_Zone
+  vrf member PEER-KEEPALIVE
+  ip address 123.123.123.1/30
+  no shutdown
+interface loopback0
+  description :Loopback Management
+  ip address 10.99.34.11/32
+  ip router eigrp 1
+interface loopback1
+  description Loopback OTV
+  ip address 10.99.34.81/32
+  ip router eigrp 1
+interface loopback20
+  description VODAFONE_MGMT
+  ip address 10.201.75.4/32
+  ip router eigrp 1
+interface Ethernet101/1/1
+  description *** Unmanaged LAN Interface *** - DD2500CHNPRD01 Mgmt - Veth0
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/2
+  description *** Unmanaged LAN Interface *** - DD2500CHNPRD01 Nic2 - Eth0b
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/3
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 2 iLo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/4
+  description *** Unmanaged LAN Interface *** - DD2500 Data Backup Eth0b
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/5
+  description *** Unmanaged LAN Interface *** - EMC Mgmt Server - HP DL380 iLo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/6
+  description *** Unmanaged LAN Interface *** - EMC Mgmt Server - HP DL380 NIC 1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/7
+  description *** Unmanaged LAN Interface *** - EMC VMAX 100K Mgmt 1
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/8
+  description *** Unmanaged LAN Interface *** - EMC VMAX 100K Port 1
+  switchport
+  switchport access vlan 14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/9
+  description *** Unmanaged LAN Interface *** - EMC VMAX 100K Port 3
+  switchport
+  switchport access vlan 14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/10
+  description *** Unmanaged LAN Interface *** - EMC SAN Switch 1 Mgmt 1
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/11
+  description *** Unmanaged LAN Interface *** - EMC SAN Switch 2 Mgmt 1
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/12
+  description *** Unmanaged LAN Interface *** - DD2500 Management IPMI
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/13
+  description *** Unmanaged LAN Interface *** - EMC VNX-1 SPA ISCSI Port
+  switchport
+  switchport access vlan 14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/14
+  description *** Unmanaged LAN Interface *** - Arcsight prod 1 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/15
+  description *** Unmanaged LAN Interface *** - Arcsight prod 2 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/16
+  description *** Unmanaged LAN Interface *** - DD2500 Management Eth0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/17
+  description *** Unmanaged LAN Interface *** - NRX Server Data port 1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 12-14,21,24,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/18
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 3 ilo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/19
+  description *** Unmanaged LAN Interface *** - EMC VMAX 250K Management port
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/20
+  description *** Unmanaged LAN Interface *** - EMC VMAX 250K Data port
+  switchport
+  switchport access vlan 14
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/21
+  description *** Unmanaged LAN Interface *** - EMC VMAX 250K Data port
+  switchport
+  switchport access vlan 14
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/22
+  description *** Unmanaged LAN Interface *** - EMC VMAX 250K Data port
+  switchport
+  switchport access vlan 14
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/23
+  description *** Unmanaged LAN Interface *** - CN Local ESXi 2 NIC 5
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 12-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/24
+  description *** Unmanaged LAN Interface *** - NRX Server Management port 1
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/25
+  description *** Unmanaged LAN Interface *** - DD2500CHNPRD01 Nic1 - Eth0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/26
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 1 NIC1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 200 mode active
+  no shutdown
+interface Ethernet101/1/27
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 1 NIC2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/28
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 2 NIC1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 201 mode active
+  no shutdown
+interface Ethernet101/1/29
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 2 NIC2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/30
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 2 NIC3
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/31
+  description *** Unmanaged LAN Interface *** - Netapps Array Eth0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 14,24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/32
+  description *** Unmanaged LAN Interface *** - Arcsight prod 1 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/33
+  description *** Unmanaged LAN Interface *** - Arcsight prod 1 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/34
+  description *** Unmanaged LAN Interface *** - Arcsight prod 1 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/35
+  description *** Unmanaged LAN Interface *** - Arcsight prod 2 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/36
+  description *** Unmanaged LAN Interface *** - Arcsight prod 2 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/37
+  description *** Unmanaged LAN Interface *** - Arcsight prod 2 data port1
+  switchport
+  switchport access vlan 13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/38
+  description *** Unmanaged LAN Interface *** - OA ESXi Server Management port 1
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/39
+  description *** Unmanaged LAN Interface *** - CN Local ESXi 2 NIC 6
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 12-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/40
+  description *** Unmanaged LAN Interface *** - CN Local ESXi 2 NIC 7
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 12-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/41
+  description *** Unmanaged LAN Interface *** - CN Local ESXi 2 NIC 8
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 12-14,21,24,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/42
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 3 NIC1 E0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 205 mode active
+  no shutdown
+interface Ethernet101/1/43
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 3 NIC2 E0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/44
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 4 NIC1 E0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 206 mode active
+  no shutdown
+interface Ethernet101/1/45
+  description *** Unmanaged LAN Interface *** - NetApp Ctlr 4 NIC2 E0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/46
+  description *** Unmanaged LAN Interface *** - OA ESXi Server Data port 1
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/47
+  description *** Unmanaged LAN Interface *** - OA ESXi Server iLO port
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet101/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/1
+  description *** Unmanaged LAN Interface *** - iLO for ESXi01
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/2
+  description *** Unmanaged LAN Interface *** - iLO for ESXi02
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/3
+  description *** Unmanaged LAN Interface *** - iLO for ESXi03
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/4
+  description *** Unmanaged LAN Interface *** - iLO for ESXi04
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/5
+  description *** Unmanaged LAN Interface *** - VMWin for ESXi01
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/6
+  description *** Unmanaged LAN Interface *** - VMLinux for ESXi01
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/7
+  description *** Unmanaged LAN Interface *** - vMotion for ESXi01
+  switchport
+  switchport access vlan 21
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/8
+  description *** Unmanaged LAN Interface *** - VM MGM for ESXi01
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/9
+  description *** Unmanaged LAN Interface *** - VMWin for ESXi02
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/10
+  description *** Unmanaged LAN Interface *** - VMLinux for ESXi02
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/11
+  description *** Unmanaged LAN Interface *** - vMotion for ESXi02
+  switchport
+  switchport access vlan 21
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/12
+  description *** Unmanaged LAN Interface *** - VM MGM for ESXi02
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/13
+  description *** Unmanaged LAN Interface *** - VMWin for ESXi03
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/14
+  description *** Unmanaged LAN Interface *** - VMLinux for ESXi03
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/15
+  description *** Unmanaged LAN Interface *** - vMotion for ESXi03
+  switchport
+  switchport access vlan 21
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/16
+  description *** Unmanaged LAN Interface *** - VM MGM for ESXi03
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/17
+  description *** Unmanaged LAN Interface *** - VMWin for ESXi04
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/18
+  description *** Unmanaged LAN Interface *** - VMLinux for ESXi04
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/19
+  description *** Unmanaged LAN Interface *** - EAST PROD application server
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/20
+  description *** Unmanaged LAN Interface *** - EAST PROD database server
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/21
+  description *** Unmanaged LAN Interface *** - vMotion for ESXi04
+  switchport
+  switchport access vlan 21
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/22
+  description *** Unmanaged LAN Interface *** - VM MGM for ESXi04
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/23
+  description *** Unmanaged LAN Interface *** - MGM for StorageA1
+  switchport
+  switchport access vlan 14
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/24
+  description *** Unmanaged LAN Interface *** - MGM for StorageA2
+  switchport
+  switchport access vlan 14
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/25
+  description *** Unmanaged LAN Interface *** - iLO for HOSTEXICNEBLKL1
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/26
+  description *** Unmanaged LAN Interface *** - MGM for HOSTEXICNEBLKL1
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/27
+  description *** Unmanaged LAN Interface *** - VMWin  for HOSTEXICNEBLKL1
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/28
+  description *** Unmanaged LAN Interface *** - VMLinux  for HOSTEXICNEBLKL1
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/29
+  description *** Unmanaged LAN Interface *** - VMotion  for HOSTEXICNEBLKL1
+  switchport
+  switchport access vlan 21
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/31
+  description ESXICN23BLACKL2 VM Mgm1
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/32
+  description ESXICN23BLACKL2 Vlan13
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/33
+  description ESXICN23BLACKL2 Vlan12
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/34
+  description ESXICN23BLACKL2 Vlan21
+  switchport
+  switchport access vlan 21
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/35
+  description *** Unmanaged LAN Interface *** - ESXICN23CNMS01 VM Mgm1
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/36
+  description *** Unmanaged LAN Interface *** - ESXICN23CNMS01 vlan13
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/37
+  description *** Unmanaged LAN Interface *** - ESXICN23CNMS01 vlan12
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/38
+  description *** Unmanaged LAN Interface *** - ESXICN23CNMS01 vlan24ilo
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/39
+  description *** Unmanaged LAN Interface *** -  ESXICN23CNMS02 vlan13
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/40
+  description *** Unmanaged LAN Interface *** - ESXICN23CNMS02 vlan12
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/41
+  description *** Unmanaged LAN Interface *** - ESXICN23CNMS02 VM Mgm1
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet103/1/47
+  description *** Unmanaged LAN Interface *** - M-SGT-CN023-F02-A-WL-WLC-1 Port1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 20
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 300
+  no shutdown
+interface Ethernet103/1/48
+  description *** Unmanaged LAN Interface *** - M-SGT-CN023-F02-A-WL-WLC-1 Service Port
+  switchport
+  switchport access vlan 5
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/1
+  description *** Unmanaged LAN Interface *** - EAST PROD VMware Management Port
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/2
+  description *** Unmanaged LAN Interface *** - EAST PROD application server
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/3
+  description *** Unmanaged LAN Interface *** - EAST PROD database server
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/4
+  description *** Unmanaged LAN Interface *** - EAST VM Windows Network 1
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+  no shutdown
+interface Ethernet105/1/7
+  description *** Unmanaged LAN Interface *** - SVCCN004SHA0001-01_e0M
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/10
+  description *** Unmanaged LAN Interface *** - :L3 Link to CUCM CIMC
+  switchport
+  switchport access vlan 26
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/11
+  description *** Unmanaged LAN Interface *** - :L3 Link to CUCM Module 2 Port 2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 25
+  no snmp trap link-status
+  channel-group 31
+  no shutdown
+interface Ethernet105/1/12
+  description *** Unmanaged LAN Interface *** - :L3 Link to CUCM Module 2 Port 1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 25
+  no snmp trap link-status
+  channel-group 31
+  no shutdown
+interface Ethernet105/1/13
+  description *** Unmanaged LAN Interface *** - ESXICN23EDRAFT1 VM Mgm
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/14
+  description *** Unmanaged LAN Interface *** - ESXICN23EDRAFT1 Linux Data
+  switchport
+  switchport access vlan 12
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/15
+  description *** Unmanaged LAN Interface *** - ESXICN23EDRAFT1 Win Data
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/16
+  description *** Unmanaged LAN Interface *** - Storage Port2
+  switchport
+  switchport access vlan 14
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/39
+  description *** Unmanaged LAN Interface *** - DD6900 Eth0a
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/40
+  description *** Unmanaged LAN Interface *** - DD6900 Eth0b
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/41
+  description *** Unmanaged LAN Interface *** - DD6900 Management IPMI
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/42
+  description *** Unmanaged LAN Interface *** - DD6900CHNPRD01 Nic1 - EthMa
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/43
+  description *** Unmanaged LAN Interface *** - DD6900CHNPRD01 Nic2 - EthMb
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/44
+  description *** Unmanaged LAN Interface *** - DD6900CHNPRD01 Mgmt - Veth0
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet105/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/1
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/2
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/3
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/4
+  description *** Unmanaged LAN Interface *** - EAST VM Windows Network 2
+  switchport
+  switchport access vlan 13
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/7
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/10
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet107/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/1
+  description *** Unmanaged LAN Interface *** - SVCCN003SHA0001-01_e0M
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/2
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/3
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/4
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/7
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/10
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet109/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/1
+  description *** Unmanaged LAN Interface *** - ESXi 1 iLo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/2
+  description *** Unmanaged LAN Interface *** - ESXi 2 iLo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/3
+  description *** Unmanaged LAN Interface *** - ESXi 3 iLo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/4
+  description *** Unmanaged LAN Interface *** - ESXi 4 iLo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/5
+  description *** Unmanaged LAN Interface *** - ESXi 5 iLo
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/6
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T5-2 console Net MGT
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/7
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T5-2 NET0
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/8
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T5-2  NET2
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/9
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T5-2 PCIE4 port1
+  switchport
+  switchport access vlan 12
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/10
+  description *** Unmanaged LAN Interface *** - Server-2 PROD Utility T5-2 console Net MGT
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/11
+  description *** Unmanaged LAN Interface *** - Server-2PROD Utility T5-2 NET0
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/12
+  description *** Unmanaged LAN Interface *** - Server-2PROD Utility T5-2 NET2
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/13
+  description *** Unmanaged LAN Interface *** - Server-2PROD Utility T5-2 PCIE4 port1
+  switchport
+  switchport access vlan 12
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/14
+  description *** Unmanaged LAN Interface *** - IBM P720 NIC1 NIC1 - Port1 (TOP Port)
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/15
+  description *** Unmanaged LAN Interface *** - IBM P720 NIC1 NIC1 - Port2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 202 mode active
+  no shutdown
+interface Ethernet111/1/16
+  description *** Unmanaged LAN Interface *** - IBM P720 NIC2 NIC1 - Port2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 204 mode active
+  no shutdown
+interface Ethernet111/1/17
+  description *** Unmanaged LAN Interface *** - IBM P720 HMC Port1 HMC Port1
+  switchport
+  switchport access vlan 16
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/18
+  description *** Unmanaged LAN Interface *** - IBM HMC ETH0 ( Link/Port1)
+  switchport
+  switchport access vlan 16
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/19
+  description *** Unmanaged LAN Interface *** - Sz-pric-lb01 port G1
+  switchport
+  switchport access vlan 222
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/20
+  description *** Unmanaged LAN Interface *** - Sz-pric-lb01 port G6/MGMT1
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/21
+  description *** Unmanaged LAN Interface *** - NRX Server iLo port
+  switchport
+  switchport access vlan 24
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/24
+  description *** Unmanaged LAN Interface *** - Sz-pric-lb01 port
+  switchport
+  switchport access vlan 71
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/25
+  description *** Unmanaged LAN Interface *** - ESXi 1 NIC1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/26
+  description *** Unmanaged LAN Interface *** - ESXi 1 NIC2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/27
+  description *** Unmanaged LAN Interface *** - ESXi 1 NIC3
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/28
+  description *** Unmanaged LAN Interface *** - ESXi 1 NIC4
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/29
+  description *** Unmanaged LAN Interface *** - ESXi 2 NIC1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/30
+  description *** Unmanaged LAN Interface *** - ESXi 2 NIC2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/31
+  description *** Unmanaged LAN Interface *** - ESXi 2 NIC3
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/32
+  description *** Unmanaged LAN Interface *** - ESXi 2 NIC4
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/33
+  description *** Unmanaged LAN Interface *** - ESXi 3 NIC1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/34
+  description *** Unmanaged LAN Interface *** - ESXi 3 NIC2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/35
+  description *** Unmanaged LAN Interface *** - ESXi 3 NIC3
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/36
+  description *** Unmanaged LAN Interface *** - ESXi 3 NIC4
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/37
+  description *** Unmanaged LAN Interface *** - ESXi 4 NIC1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/38
+  description *** Unmanaged LAN Interface *** - ESXi 4 NIC2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/39
+  description *** Unmanaged LAN Interface *** - ESXi 4 NIC3
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/40
+  description *** Unmanaged LAN Interface *** - ESXi 4 NIC4
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/41
+  description *** Unmanaged LAN Interface *** - ESXi 5 NIC1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/42
+  description *** Unmanaged LAN Interface *** - ESXi 5 NIC2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/43
+  description *** Unmanaged LAN Interface *** - ESXi 5 NIC3
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21,24,30
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/44
+  description *** Unmanaged LAN Interface *** - ESXi 5 NIC4
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,21-22,24,30,60
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/45
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T5-2 (backup) PCIE4 port2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,30,515-516,518
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/46
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T5-2 (backup) PCIE4 port2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,30,515-516,518
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/47
+  description *** Unmanaged LAN Interface *** - Sz-pric-lb01 port G2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 12-13
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet111/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/1
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T7-2 console Net MGT
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/2
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T7-2 Net 0
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/3
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T7-2  Net 2
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/4
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T7-2 PCIE4 Port 1
+  switchport
+  switchport access vlan 12
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/5
+  description *** Unmanaged LAN Interface *** - Server-1 PROD Utility T7-2 PCIE4 Port 2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,30,515-516,518
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/6
+  description *** Unmanaged LAN Interface *** - Server-2 PROD Utility T7-2 console Net MGT
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/7
+  description *** Unmanaged LAN Interface *** - Server-2 PROD Utility T7-2 Net 0
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/8
+  description *** Unmanaged LAN Interface *** - Server-2 PROD Utility T7-2 Net 2
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/9
+  description *** Unmanaged LAN Interface *** - Server-2 PROD Utility T7-2 PCIE4 Port 1
+  switchport
+  switchport access vlan 12
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/10
+  description *** Unmanaged LAN Interface *** - Server-2 PROD Utility T7-2 PCIE5 Port 2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,30,515-516,518
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/20
+  description *** Unmanaged LAN Interface *** - IBM S914 ETH0 (Link/Port1)
+  switchport
+  switchport access vlan 16
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/21
+  description *** Unmanaged LAN Interface *** - IBM S914 HMC Port1 HMC Port1
+  switchport
+  switchport access vlan 17
+  spanning-tree port type edge
+  speed 100
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/22
+  description *** Unmanaged LAN Interface *** - IBM S914 NIC1 NIC1 - Port 1 (Top Port)
+  switchport
+  switchport access vlan 24
+  spanning-tree port type edge
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/23
+  description *** Unmanaged LAN Interface *** - IBM S914 NIC1 NIC1 - Port 2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 209 mode active
+  no shutdown
+interface Ethernet113/1/24
+  description *** Unmanaged LAN Interface *** - IBM S914 NIC2 NIC1 - Port 2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 15,30
+  speed 1000
+  duplex full
+  no snmp trap link-status
+  channel-group 210 mode active
+  no shutdown
+interface Ethernet113/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet113/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/1
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/2
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/3
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/4
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/7
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/10
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet115/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/1
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/2
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/3
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/4
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/7
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/10
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet117/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/1
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/2
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/3
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/4
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/7
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/10
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet119/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/1
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/2
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/3
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/4
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/7
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/10
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet121/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/1
+  description *** Unmanaged LAN Interface *** - SVCCN003SHA0001-01_e0c
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24,600-601
+  spanning-tree port type edge
+  speed 10000
+  duplex full
+  no snmp trap link-status
+  channel-group 208 mode active
+  no shutdown
+interface Ethernet123/1/2
+  description *** Unmanaged LAN Interface *** - SVCCN003SHA0001-01_e0d
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24,600-601
+  spanning-tree port type edge
+  speed 10000
+  duplex full
+  no snmp trap link-status
+  channel-group 208 mode active
+  no shutdown
+interface Ethernet123/1/3
+  description *** Unmanaged LAN Interface *** - SVCCN003SHA0001-01_e0e
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24,600-601
+  spanning-tree port type edge
+  speed 10000
+  duplex full
+  no snmp trap link-status
+  channel-group 208 mode active
+  no shutdown
+interface Ethernet123/1/4
+  description *** Unmanaged LAN Interface *** - SVCCN003SHA0001-01_e0f
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 13-14,24,600-601
+  spanning-tree port type edge
+  speed 10000
+  duplex full
+  no snmp trap link-status
+  channel-group 208 mode active
+  no shutdown
+interface Ethernet123/1/5
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/6
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/7
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/8
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/9
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/10
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/11
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/12
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/13
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/14
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/15
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/16
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/17
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/18
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/19
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/20
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/21
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/22
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/23
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/24
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/25
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/26
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/27
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/28
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/29
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/30
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/31
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/32
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/33
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/34
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/35
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/36
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/37
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/38
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/39
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/40
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/41
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/42
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/43
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/44
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/45
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/46
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/47
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+interface Ethernet123/1/48
+  description *** Unmanaged LAN Interface *** - Corp FEX
+  switchport
+  no snmp trap link-status
+  no shutdown
+logging source-interface loopback 0

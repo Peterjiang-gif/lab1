@@ -1,0 +1,199 @@
+from datetime import datetime
+import os 
+import re
+filewrite=open('check_output.txt','a')
+voice_site_switch=[]
+with open ('voice_site_device_info.txt','r') as files: 
+   for line in files: 
+       result=line.split()
+       if len(result)==int(2): 
+          voice_site_switch.append(result[0]+"_"+result[1]) 
+files.close   
+
+m=len(voice_site_switch)
+vlan_hsrp=[]
+vlan_hsrp_issue=[]
+for i in range(0,m):  
+    res=voice_site_switch[i].split('_')
+    vlan=[]
+    vlan_name=[]
+    with open(res[0]+'_csw_vlan_brief.txt','r') as output:          
+            for line in output: 
+              if line!=''or line!="/n": 
+                 line=line.strip()
+                 if 'active' in line:
+                     result=line.split()
+                     if len(result)>int(1):
+                        if result[0]=="vlan":
+                           if result[2]=="active":
+                              vlan_name.append(result[1])
+                              
+                           else:
+                                result[1]=result[1].strip('vl')
+                                value=result[1]+"+"+result[2]
+                                vlan_name.append(value)
+                        if result[0]!="vlan" and result[0]!="VLAN" and result[0]!="Vlan":
+                           result[0]=result[0].strip('vl')
+                           value=result[0]+"+"+result[1]
+                           vlan_name.append(value)
+                                   
+                 else:
+                      if '/' not in line and 'access port' not in line and 'Po' not in line and '-' not in line:
+                         result=line.split()
+                         if len(result)>int(0):
+                            if result[0]=="vlan": 
+                               if len(result)==int(2):                     
+                                  vlan_name.append(result[1])
+                                 
+                               if len(result)>int(2):
+                                  result[2]=result[2].strip('(')
+                                  result[2]=result[2].strip(')')
+                                  value=result[1]+"+"+result[2]
+                                  vlan_name.append(value)
+                                 
+                            else:
+                               if len(result)==int(1):
+                                  result[0]=result[0].strip('vl')
+                                  vlan_name.append(result[0]) 
+                                  
+                                                            
+                               if len(result)>int(1): 
+                                  result[0]=result[0].strip('vl')
+                                  result[1]=result[1].strip('(')
+                                  result[1]=result[1].strip(')')
+                                  value=result[0]+"+"+result[1]
+                                  vlan_name.append(value)
+                                 
+    output.close 
+    l=len(vlan_name)
+    for j in range(0,l):
+            if '(' in vlan_name[j]:
+               value=re.sub(r"\([^()]*\)", "",vlan_name[j])
+               n=len(value)
+               result=vlan_name[j][n:]
+               result=result.strip('(')
+               result=result.strip(')')
+               vlan.append(value)
+            if '+' in vlan_name[j]: 
+               result=vlan_name[j].split('+')
+               vlan.append(result[0]) 
+                    
+    l=len(vlan)
+    for j in range(0,l): 
+        svi_flag="false"
+        write_flag="false"    
+        standby_ip_flag="false"  
+        standby_priority_flag="false"
+        hsrp_start_flag="false"
+        hsrp_flag="false"
+        priority=""
+        priority_value=""        
+        with open(res[0]+'_switch_int_config.txt','r') as output:  
+             start_flag="false"
+             for line in output: 
+                if start_flag=="ture":
+                   result=line.split()
+                   if 'ip address' in line and len(result)>int(2):
+                       svi_flag="ture" 
+                   if 'standby' in line and 'ip' in line and len(result)==int(4): 
+                       standby_ip_flag="ture" 
+                   if 'standby' in line and 'priority' in line and len(result)==int(4): 
+                       standby_priority_flag="ture" 
+                       priority=result[3]
+                   if 'hsrp' in line and len(result)==int(2):
+                       hsrp_start_flag="ture"    
+                   if hsrp_start_flag=="ture" and 'ip' in line and len(result)==int(2): 
+                      hsrp_flag="ture"   
+                      priority=str(0)
+                   if hsrp_start_flag=="ture" and 'priority' in line and len(result)==int(2):
+                      priority_value=result[1]                   
+                   if 'interface' in line: 
+                        re=line.split()
+                        if len(re)==int(2) and re[0]=="interface":
+                           start_flag="false"
+                          
+                       
+                if 'interface' in line and vlan[j] in line: 
+                     re=line.split()
+                     if len(re)==int(2):
+                        if re[1]=="Vlan"+vlan[j]:
+                           start_flag="ture" 
+        output.close 
+        
+        if svi_flag=="ture":
+           
+           if standby_ip_flag=="ture" and standby_priority_flag=="ture" and hsrp_flag=="false":
+              write_flag="ture"
+           if hsrp_flag=="ture":
+              if priority_value!="":
+                 priority=priority_value            
+           if write_flag=="ture" or hsrp_flag=="ture":
+              value=""
+              in_flag="false"
+              if len(vlan_hsrp)!=int(0):
+                 for k in range(0,len(vlan_hsrp)):
+                     info=vlan_hsrp[k].split('_')
+                     if info[0]=="vlan"+vlan[j]:
+                        in_flag="ture" 
+                        if len(info)==int(4):
+                           if int(priority)>int(info[2]):
+                              num=str(int(info[3])+int(1))
+                              value="vlan"+vlan[j]+"_"+res[0]+"_"+priority+"_"+num
+                              vlan_hsrp[k]=value
+                           else:
+                               num=str(int(info[3])+int(1)) 
+                               value=info[0]+"_"+info[1]+"_"+info[2]+"_"+num
+                               vlan_hsrp[k]=value
+              if len(vlan_hsrp)==int(0) or in_flag=="false":
+                 value="vlan"+vlan[j]+"_"+res[0]+"_"+priority+"_"+"1"
+                 vlan_hsrp.append(value)
+           if write_flag=="false" and hsrp_flag=="false": 
+              
+              if hsrp_start_flag=="false":
+                 if standby_ip_flag=="false":
+                    value=res[0]+" "+"vlan"+vlan[j]+" hsrp error:"+"hsrp ip(standby) set incorrect " 
+                    vlan_hsrp_issue.append(value)
+                 if standby_priority_flag=="false":
+                    value=res[0]+" "+"vlan"+vlan[j]+" hsrp error:"+"hsrp priority(standby) set incorrect " 
+                    vlan_hsrp_issue.append(value)
+              if hsrp_start_flag=="ture":
+                 value=res[0]+" "+"vlan"+vlan[j]+" hsrp error:"+"hsrp ip set incorrect " 
+                 vlan_hsrp_issue.append(value)              
+                    
+#print(vlan_hsrp)
+#print(vlan_hsrp_issue)
+filewrite.write("vlan hsrp information:")  
+filewrite.write('\n')   
+if len(vlan_hsrp)!=int(0):
+       for j in range (0,len(vlan_hsrp)): 
+           result=vlan_hsrp[j].split('_')
+           if len(result)==int(4):
+              if int(result[3])==int(2):
+                 filewrite.write(result[0]+" hsrp available , hsrp primary role is "+result[1])
+                 filewrite.write('\n')
+if len(vlan_hsrp_issue)!=int(0):
+       for j in range (0,len(vlan_hsrp_issue)):
+           filewrite.write(vlan_hsrp_issue[j])
+           filewrite.write('\n')
+filewrite.close()           
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
