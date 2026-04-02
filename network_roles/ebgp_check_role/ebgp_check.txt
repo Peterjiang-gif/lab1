@@ -1,0 +1,96 @@
+from netmiko import ConnectHandler
+from netmiko import NetMikoTimeoutException
+from datetime import datetime
+import os 
+import re
+
+
+         
+voice_site_switch=[]
+voice_site_router=[]
+filewrite=open('check_output_detail.txt','a')
+with open ('voice_site_device_info.txt','r') as files: 
+   for line in files: 
+     result=line.split()
+     res=result[0].split('-')
+     m=len(res)
+     for i in range(0,m): 
+       if i==(m-int(2)): 
+          if res[i]=="r" or res[i]=="R":
+             voice_site_router.append(result[0]+"_"+result[1])
+          if res[i]=="sw" or res[i]=="csw" or res[i]=="CSW" or res[i]=="dsw" or res[i]=="DSW" or res[i]=="core" or res[i]=="ss" or res[i]=="bs": #extend switch identify
+             voice_site_switch.append(result[0]+"_"+result[1])     
+files.close
+
+
+
+m=len(voice_site_switch)
+n=len(voice_site_router)  
+
+for i in range(0,n):
+    
+    res=voice_site_router[i].split('_') 
+    value=""    
+    bgp_num=""
+    ebgp_flag="false"
+    ebgp_num=[]
+    num_back=[]
+    filewrite.write('\n')
+    filewrite.write(res[0]+' ebgp traffic info:')
+    filewrite.write('\n')
+    with open(res[0]+'_bgp_config.txt','r') as output:    
+      for line in output: 
+        result=line.split() #character isolate coloum fot output fpr split
+        if len(result)==3:
+           if result[1]=="bgp": 
+              bgp_num=result[2]
+        if len(result)==4:
+           if result[0]=="neighbor" and result[2]=="remote-as": 
+              if result[3]!="" and bgp_num!="" and result[3]!=bgp_num: 
+                ebgp_flag="ture"
+                write_flag="ture"
+                for m in range (0,len(ebgp_num)):
+                    if result[3]==ebgp_num[m]:
+                       write_flag="false" 
+                if write_flag=="ture":                      
+                   ebgp_num.append(result[3])
+                   num_back.append(result[3])
+    output.close
+   
+    if bgp_num!="" and ebgp_flag=="ture":
+       count=int(0)
+       with open(res[0]+'_r_bgp_sum.txt','r') as output:   
+          ebgp_nei_tag="false"
+          start_flag="false"
+          find_flag="false"
+          
+          for line in output: 
+            if line!="" and start_flag=="ture":
+              result=line.split() 
+              if len(result)>int(2):
+                if result[2]!=bgp_num and result[2]!="": 
+                  L=len(ebgp_num)
+                  for k in range(0,L):
+                     if result[2]==ebgp_num[k]:
+                        num_back[k]=""
+                        find_flag="ture" 
+                        count=count+int(1)                
+                  if find_flag=="ture":                  
+                    ebgp_nei_tag="ture"
+                    value=value+"vlan outside protocol "+"ebgp "+result[2]+" established and"
+                      
+                    
+            if 'Neighbor' in line or 'neighbor' in line: 
+                 start_flag="ture"             
+       output.close  
+       if count==int(1): 
+         value=value+"\n"+"this CI is single dual device(only one ebgp neighbor established)"+"\n"
+       if count>int(1):  
+         value=value+"\n"+"this CI is multiple dual device(more than one ebgp neighbor established)"+"\n"
+       Le=len(num_back)
+       if Le>int(0):
+          for n in range(0,Le):
+              if num_back[n]!="":
+                 value=value+"vlan outside protocol "+"ebgp "+num_back[n]+" unestablished"+"and"   
+    filewrite.write(value)  
+filewrite.close()    
