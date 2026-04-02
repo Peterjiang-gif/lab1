@@ -1,0 +1,6 @@
+by september or october 
+make auto tool available for all international site situation 
+add additional function for international site like display ip filter information, loop prevention 
+expand auto ts function to all ANZ sites ,including anz domestic and other types 
+make site design diagram check audit automation 
+manage to replace 20-30% team work 

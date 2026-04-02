@@ -1,0 +1,2 @@
+device (ox)M-SGT-CN023-F02-A-DSW-1
+vlan_id 24

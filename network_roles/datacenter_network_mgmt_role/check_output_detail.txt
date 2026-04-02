@@ -1,0 +1,56 @@
+
+
+M-SGT-CN023-F02-A-CSW-1 layer 3 info:
+svi vlan in layer 3:
+vlan5+in eigrp network ture, vlan12+in eigrp network false, vlan14+in eigrp network false, vlan15+in eigrp network false, vlan16+in eigrp network ture, vlan17+in eigrp network false, vlan19+in eigrp network false, vlan20+in eigrp network false, vlan21+in eigrp network false, vlan22+in eigrp network false, vlan24+in eigrp network ture, vlan25+in eigrp network false, vlan26+in eigrp network false, vlan59+in eigrp network false, vlan60+in eigrp network false, vlan71+in eigrp network false, vlan220+in eigrp network false, vlan221+in eigrp network false, vlan222+in eigrp network false, vlan252+in eigrp network false, vlan253+in eigrp network false, vlan501+in eigrp network false, vlan502+in eigrp network false, vlan600+in eigrp network false, vlan601+in eigrp network false, vlan900+in eigrp network ture, vlan901+in eigrp network false, vlan902+in eigrp network false, vlan905+in eigrp network false, 
+router connected interface in switch:
+Eth5/10(to M-SGT-CN023-F02-A-RAN-R-1), Eth5/47(to M-SGT-CN023-F02-A-BAN-R-1), 
+Eth5/10(to M-SGT-CN023-F02-A-RAN-R-1): traffic to router:  switchport trunk allowed vlan 900-901
+ , Eth5/47(to M-SGT-CN023-F02-A-BAN-R-1): traffic to router:  switchport trunk allowed vlan 59,901
+ , 
+
+M-SGT-CN023-F02-A-CSW-1 layer2 info:
+vlan 24 up access port:Eth101/1/1, Eth101/1/3, Eth101/1/5, Eth101/1/12, Eth101/1/19, Eth101/1/24, Eth101/1/38, Eth101/1/47, Eth103/1/1, Eth103/1/2, Eth103/1/3, Eth103/1/4, Eth103/1/8, Eth103/1/12, Eth103/1/16, Eth103/1/22, Eth103/1/25, Eth103/1/26, Eth103/1/31, Eth103/1/35, Eth103/1/38, Eth103/1/41, Eth105/1/1, Eth105/1/13, Eth105/1/41, Eth105/1/44, Eth109/1/1, Eth111/1/1, Eth111/1/2, Eth111/1/3, Eth111/1/4, Eth111/1/5, Eth111/1/6, Eth111/1/7, Eth111/1/8, Eth111/1/10, Eth111/1/11, Eth111/1/12, Eth111/1/20, Eth111/1/21, Eth113/1/1, Eth113/1/2, Eth113/1/6, Eth113/1/7, Eth113/1/8, Eth113/1/22, 
+layer 2 trunk info:M-SGT-CN023-F02-A-CSW-1Eth1/23
+description Eth1/23       eth    40G     *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet1/23 *** - :L3 Link to M-SGT-CN023-F02-A-L
+allowed vlan=5,12-17,19-21,24,58-60,71,220-222,252-253,515-516,518
+
+Eth1/24
+description Eth1/24       eth    40G     *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet1/24 *** - :vPC Peer-Link to M-SGT-CN023-F
+allowed vlan=1-58,60-513,515-899,904-4094
+
+Eth2/23
+description Eth2/23       eth    40G     *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet2/23 *** - :L3 Link to M-SGT-CN023-F02-A-L
+allowed vlan=5,12-17,19-21,24,58-60,71,220-222,252-253,515-516,518
+
+Eth2/24
+description Eth2/24       eth    40G     *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet2/24 *** - :vPC Peer-Link to M-SGT-CN023-F
+allowed vlan=1-58,60-513,515-899,904-4094
+
+
+trunk physical int:Eth1/19, Eth1/23, Eth1/24, Eth2/19, Eth2/23, Eth2/24, Eth5/3, Eth5/10, Eth5/47, Eth101/1/2, Eth101/1/4, Eth101/1/16, Eth101/1/17, Eth101/1/23, Eth101/1/25, Eth101/1/26, Eth101/1/27, Eth101/1/28, Eth101/1/29, Eth101/1/30, Eth101/1/31, Eth101/1/39, Eth101/1/40, Eth101/1/41, Eth101/1/42, Eth101/1/43, Eth101/1/44, Eth101/1/45, Eth103/1/47, Eth105/1/11, Eth105/1/12, Eth105/1/39, Eth105/1/40, Eth105/1/42, Eth105/1/43, Eth111/1/15, Eth111/1/16, Eth111/1/25, Eth111/1/26, Eth111/1/27, Eth111/1/28, Eth111/1/29, Eth111/1/30, Eth111/1/31, Eth111/1/32, Eth111/1/33, Eth111/1/34, Eth111/1/35, Eth111/1/36, Eth111/1/37, Eth111/1/38, Eth111/1/39, Eth111/1/40, Eth111/1/41, Eth111/1/42, Eth111/1/43, Eth111/1/44, Eth111/1/45, Eth111/1/46, Eth111/1/47, Eth113/1/5, Eth113/1/10, Eth113/1/23, Eth113/1/24, Eth123/1/1, Eth123/1/2, Eth123/1/3, Eth123/1/4, 
+
+(ox)M-SGT-CN023-F02-A-DSW-1 layer2 info:
+vlan 24 up access port:Eth101/1/12, Eth101/1/38, Eth103/1/41, Eth111/1/21, 
+layer 2 trunk info:(ox)M-SGT-CN023-F02-A-DSW-1Eth1/13
+description Eth1/13       eth    40G     *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-1 Ethernet1/19 *** - OTV-Inside-Interface
+allowed vlan=14-17,24,515-516,518,1000
+
+Eth2/13
+description Eth2/13       eth    40G     *** OVPI_poll - Managed LAN Interface Connects to M-SGT-CN023-F02-A-NX-CORE-2 Ethernet2/19 *** - OTV-Inside-Interface
+allowed vlan=14-17,24,515-516,518,1000
+
+
+trunk physical int:Eth1/13, Eth2/13, 
+
+M-SGT-CN023-F02-A-BAN-R-1 ip traffic info:
+M-SGT-CN023-F02-A-BAN-R-1:all core switch connected port are in eigrp interface and +vlan outside protocol  DMVPN eigrp vrf Tunnel200+CHINA_BRANCH nei established and+vlan outside protocol  DMVPN eigrp vrf Tunnel300+ANZ_BRANCH nei established and+vlan outside protocol  DMVPN eigrp vrf Tunnel400+CHINA_BRANCH nei established andvlan outside protocol ebgp 65061 established andvlan outside protocol ebgp 7473 established and
+eigrp redistribute info:+bgp 65060 redistribute into eigrp vrf ANZ_BRANCH correctly+bgp 65060 redistribute into eigrp vrf CHINA_BRANCH correctly+bgp 65060 redistribute into eigrp (not vrf table)  correctly
+router to connected csw traffic: M-SGT-CN023-F02-A-BAN-R-1(csw connect int status):+  fail to get layer3 traffic to outside ready for site vlan :Te1/0/0  eigrp nei may not established+ fail to get layer3 traffic to outside ready for site vlan: interface Te1/0/0may not in device eigrp protocol rightly+ get layer2&layer3 traffic to outside ready for site vlan via Te1/0/0.59( vrf:ANZ_BRANCH)
+
+M-SGT-CN023-F02-A-RAN-R-2 ip traffic info:
+M-SGT-CN023-F02-A-RAN-R-2:all core switch connected port are in eigrp interface and +vlan outside protocol  DMVPN eigrp vrf Tunnel100+INTL_BRANCH nei established and+vlan outside protocol  DMVPN eigrp vrf Tunnel101+INTL_BRANCH nei established andvlan outside protocol ebgp 7473 established and
+eigrp redistribute info:+bgp 65060 redistribute into eigrp vrf INTL_BRANCH correctly+bgp 65060 redistribute into eigrp vrf ANZ_BRANCH correctly+bgp 65060 redistribute into eigrp (not vrf table)  correctly
+router to connected csw traffic: M-SGT-CN023-F02-A-RAN-R-2(csw connect int status):+  fail to get layer3 traffic to outside ready for site vlan :Gi0/1  eigrp nei may not established+ fail to get layer3 traffic to outside ready for site vlan: interface Gi0/1may not in device eigrp protocol rightly+  fail to get layer3 traffic to outside ready for site vlan :Gi0/2  eigrp nei may not established+ fail to get layer3 traffic to outside ready for site vlan: interface Gi0/2may not in device eigrp protocol rightly+ get layer2&layer3 traffic to outside ready for site vlan via GigabitEthernet0/1.900( vrf:ANZ_BRANCH)+ get layer2&layer3 traffic to outside ready for site vlan via GigabitEthernet0/2.902( vrf:ANZ_BRANCH)
+
+svi vlan in layer 2&3:vlan5+in eigrp network ture, vlan12+in eigrp network false, vlan14+in eigrp network false, vlan15+in eigrp network false, vlan16+in eigrp network ture, vlan17+in eigrp network false, vlan19+in eigrp network false, vlan20+in eigrp network false, vlan21+in eigrp network false, vlan22+in eigrp network false, vlan24+in eigrp network ture, vlan25+in eigrp network false, vlan26+in eigrp network false, vlan59+in eigrp network false+layer2 to router_vrf:ANZ_BRANCH, vlan60+in eigrp network false, vlan71+in eigrp network false, vlan220+in eigrp network false, vlan221+in eigrp network false, vlan222+in eigrp network false, vlan252+in eigrp network false, vlan253+in eigrp network false, vlan501+in eigrp network false, vlan502+in eigrp network false, vlan600+in eigrp network false, vlan601+in eigrp network false, vlan900+in eigrp network ture+layer2 to router_vrf:ANZ_BRANCH, vlan901+in eigrp network false, vlan902+in eigrp network false+layer2 to router_vrf:ANZ_BRANCH, vlan905+in eigrp network false, 
