@@ -1,0 +1,51 @@
+DPBEX-G-SW-A01:
+show cdp neighbor 
+DPBEX-G-SW-C01 Gig1/0/45 125 RSI  WS-C3850-Gig1/0/48
+DPBEX-G-SW-A03 Gig1/0/49 158 SI  WS-C2960XGig1/0/49
+DPBEX-G-SW-A02 Gig1/0/50 153 SI WS-C2960XGig1/0/49
+show lldp neighbor 
+DPBEX-G-SW-A03 Gig1/0/49 120 B G1/0/49 
+DPBEX-G-SW-A02 Gig1/0/50 120 B G1/0/49 
+PolycomVVX311 Gi1/0/13 120 B,T 6416.7f52.fa7e
+PolycomVVX311 Gi1/0/2 120 B,T 6416.7f52.e748
+DPBEX-G-SW-C01 Gig1/0/49 120 B G1/0/48
+BexlyTrainingroom  Gi1/0/30 120 W 4448.c1c7.e724
+DPBEX-G-SW-A01 end 
+DPBEX-G-SW-C01:
+show cdp neighbor
+DeviceID Local Intrfce Holdtme Capability Platform PortID
+MOROC-L1-SW-C01 Ten2/1/1 148 RSI C9500-16XTen2/0/9
+DPBEX-G-SW-A01 Gig1/0/48 151 SI WS-C2960XGig1/0/45
+show lldp neighbor
+DeviceID           Local Intf     Hold-time  Capability      Port ID
+MOROC-L1-SW-C01 Te2/1/1 120 B,R Te2/0/9
+DPBEX-G-SW-A01 Gi1/0/48 120 B Gi1/0/45
+SYD3-PN-SW02 Te1/1/1 120 TenGigabitEthernet Te2/0/6
+DPBEX-G-SW-C01 end
+DPBEX-G-SW-A03:
+show cdp neighbor
+DeviceID Local Intrfce Holdtme Capability Platform PortID  
+RCC-Depot-Designshop Gig1/0/48 125 SI fas0/1
+DPBEX-G-SW-A04 Gig1/0/50 167 SI Gig1/0/49
+DPBEX-G-SW-A01 Gig1/0/49 145 SI Gig1/0/49
+show lldp neighbor
+DeviceID Local Intrfce Holdtme Capability Platform PortID
+DPBEX-G-SW-A04 Gig1/0/50 167 SI Gig1/0/49
+PolycomVVX311 Gi1/0/2 120 B,T 6416.7f52.f82e
+DPBEX-G-SW-A01 Gig1/0/49 145 SI Gig1/0/49
+ac:a3:1e:c5:d8:10 Gi1/0/12 120 W aca3.1ec5.d810
+DPBEX-G-SW-A03 end
+DPBEX-G-SW-A04:
+show cdp neighbor
+DeviceID Local Intrfce Holdtme Capability Platform PortID  
+RCC-Depot-Designshop Gig1/0/48 125 SI fas0/1
+DPBEX-G-SW-A05 Gig1/0/48 167 SI Gig1/0/48
+DPBEX-G-SW-A03 Gig1/0/49 145 SI Gig1/0/50
+show lldp neighbor
+DeviceID Local Intrfce Holdtme Capability Platform PortID
+DPBEX-G-SW-A05 Gig1/0/48 167 SI Gig1/0/48
+PolycomVVX311 Gi1/0/2 120 B,T 6416.7f52.f82e
+DPBEX-G-SW-A03 Gig1/0/49 145 SI Gig1/0/50
+ac:a3:1e:c5:d8:10 Gi1/0/12 120 W aca3.1ec5.d810
+PolycomVVX311 Gi1/0/44 120 B,T 6416.7f52.ef80
+DPBEX-G-SW-A04 end

@@ -1,0 +1,24 @@
+DPBEX-G-SW-A01 local neighbor connection information:
+if there is no content under a device local neighbor connection information, it means there is no local neighbor device connect to this device  
+DPBEX-G-SW-A01 int Gig1/0/50 to DPBEX-G-SW-A02 int G1/0/49
+DPBEX-G-SW-A01 int Gi1/0/13 to PolycomVVX311 int 6416.7f52.fa7e
+DPBEX-G-SW-A01 int Gi1/0/2 to PolycomVVX311 int 6416.7f52.e748
+DPBEX-G-SW-A01 int Gi1/0/30 to BexlyTrainingroom int 4448.c1c7.e724
+DPBEX-G-SW-C01 local neighbor connection information:
+if there is no content under a device local neighbor connection information, it means there is no local neighbor device connect to this device  
+DPBEX-G-SW-C01 int Te2/1/1 to MOROC-L1-SW-C01 int Te2/0/9
+DPBEX-G-SW-C01 int Te1/1/1 to SYD3-PN-SW02 int Te2/0/6
+DPBEX-G-SW-A03 local neighbor connection information:
+if there is no content under a device local neighbor connection information, it means there is no local neighbor device connect to this device  
+DPBEX-G-SW-A03 int Gi1/0/2 to PolycomVVX311 int 6416.7f52.f82e
+DPBEX-G-SW-A03 int Gi1/0/12 to ac:a3:1e:c5:d8:10 int aca3.1ec5.d810
+DPBEX-G-SW-A04 local neighbor connection information:
+if there is no content under a device local neighbor connection information, it means there is no local neighbor device connect to this device  
+DPBEX-G-SW-A04 int Gig1/0/48 to DPBEX-G-SW-A05 int Gig1/0/48
+DPBEX-G-SW-A04 int Gi1/0/2 to PolycomVVX311 int 6416.7f52.f82e
+DPBEX-G-SW-A04 int Gi1/0/12 to ac:a3:1e:c5:d8:10 int aca3.1ec5.d810
+DPBEX-G-SW-A04 int Gi1/0/44 to PolycomVVX311 int 6416.7f52.ef80
+network device connect information:
+DPBEX-G-SW-A01 int Gig1/0/49 to DPBEX-G-SW-A03 int G1/0/49
+DPBEX-G-SW-A01 int Gig1/0/49 to DPBEX-G-SW-C01 int G1/0/48
+DPBEX-G-SW-A03 int Gig1/0/50 to DPBEX-G-SW-A04 int Gig1/0/49
