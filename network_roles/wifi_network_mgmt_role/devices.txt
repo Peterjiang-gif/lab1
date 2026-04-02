@@ -1,0 +1,44 @@
+m-anz-vic-au839csm-f02-s01 10.98.189.130
+m-anz-vic-au839csm-f02-s02 10.98.189.131
+m-anz-vic-au839csm-f03-s01 10.98.189.132
+m-anz-vic-au839csm-f03-s02 10.98.189.133
+m-anz-vic-au839csm-f04-s01 10.98.189.134
+m-anz-vic-au839csm-f04-s02 10.98.189.135
+m-anz-vic-au839csm-f05-s01 10.98.189.136
+m-anz-vic-au839csm-f05-s02 10.98.189.137
+m-anz-vic-au839csm-f06-s01 10.98.189.138
+m-anz-vic-au839csm-f06-s02 10.98.189.139
+m-anz-vic-au839csm-f07-s01 10.98.189.140
+m-anz-vic-au839csm-f07-s02 10.98.189.141
+m-anz-vic-au839csm-f08-s01 10.98.189.142
+m-anz-vic-au839csm-f08-s02 10.98.189.143
+m-anz-vic-au839csm-f09-nx-core-01 10.98.189.251
+m-anz-vic-au839csm-f09-nx-core-02 10.98.189.252
+m-anz-vic-au839csm-f09-s01 10.98.189.144
+m-anz-vic-au839csm-f09-s02 10.98.189.145
+m-anz-vic-au839csm-f10-s01 10.98.189.146
+m-anz-vic-au839csm-f10-s02 10.98.189.147
+m-anz-vic-au839csm-f11-s01 10.98.189.148
+m-anz-vic-au839csm-f11-s02 10.98.189.149
+m-anz-vic-au839csm-f12-s01 10.98.189.150
+m-anz-vic-au839csm-f12-s02 10.98.189.151
+m-anz-vic-au839csm-f13-s01 10.98.189.152
+m-anz-vic-au839csm-f13-s02 10.98.189.153
+m-anz-vic-au839csm-fg-s01 10.98.189.129
+
+//* this is example whole site(anz-au839 HA site) switchs  . can put any site cis(switches)  here for common RS and wifi check 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

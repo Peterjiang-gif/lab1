@@ -1,0 +1,24 @@
+Tool Function :
+This auto tool is used to check site switches trunk traffic status , endpoint wifi ap status , vlan svi ,wifi vlan layer 3(if use eigrp) traffic 
+After running the tool , it will report site all endpoint aps’s status
+(if ap switchport config follow the standardized one or miss some config , if ap switchport is up and is ap get authentication on the switchport ) 
+It will also list abnormal cases: the case layer2 and layer3 switch trunk port is down , the case wireless vlans are not available in layer2 and layer3 switch trunk traffic in switches , the case trunk port allowed vlans mismatch the relevant port-channel vlans , the case vlan svi is admin down but the access port assigned to the down vlan is still up 
+The case there is basic switchport’s access/ trunk incorrect setting 
+
+Tool use:
+
+
+Put all files in same directory with ansible (203.202.141.213 can be available to use ansible and python) and run command ansible-playbook execute_wireless_ap_HA.yml -u ncscwks -k
+
+Result will be written in site_issue_aps_info.txt
+
+The tool should be used commonly for most sites ( site does not router like HA site) in different accounts(including ANZ) including endpoint wifi ap, layer 2 catalyst switch and layer 3 core switch . 
+
+May need to do very simply modify sometimes , see explain note in ap_check_HA_note.txt
+
+Can frequently run the tool for all different HA sites to check/monitor endpoint device config error, to monitor switch trunk traffic abnormal , to monitor/ts endpoint working issue  . in that way , should find some site issue in advance and take reaction instead of manually troubleshoot when there is incident , save much work load 
+  
+other
+Tool can easily to extended to be available for checking only endpoint ap but also other endpoint devices , see explain note in ap_check_HA_note.txt
+
+

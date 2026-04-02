@@ -1,0 +1,67 @@
+site issue ap information(empty means all ap setting and status on their switch is ok)
+
+
+m-anz-vic-au833csm-f02-nx-core-01's port-channel20 not set trunk
+m-anz-vic-au833csm-f02-nx-core-01's port-channel20 not set trunk allowed vlan
+m-anz-vic-au833csm-f02-nx-core-01's port-channel22 not set trunk
+m-anz-vic-au833csm-f02-nx-core-01's port-channel22 not set trunk allowed vlan
+m-anz-vic-au833csm-f02-nx-core-01's port-channel30 not set trunk
+m-anz-vic-au833csm-f02-nx-core-01's port-channel30 not set trunk allowed vlan
+m-anz-vic-au833csm-f02-nx-core-01's port-channel513 not set trunk
+m-anz-vic-au833csm-f02-nx-core-01's port-channel513 not set trunk allowed vlan
+
+
+au833m-f06-ap20 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet1/1, ap's switchport config follow the standard config set
+au833m-f06-ap57 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet1/2, ap's switchport config follow the standard config set
+au833m-f06-ap16 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet1/3, ap's switchport config follow the standard config set
+au833m-f06-ap52 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet1/4, ap's switchport config follow the standard config set
+au833m-f06-ap53 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet1/5, ap's switchport config follow the standard config set
+au833m-f06-ap64 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet1/6, ap's switchport config follow the standard config set
+au833m-f06-ap63 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet2/1, ap's switchport config follow the standard config set
+au833m-f06-ap22 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet2/2, ap's switchport config follow the standard config set
+au833m-f06-ap69 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet2/3, ap's switchport config follow the standard config set
+au833m-f06-ap28 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet2/4, ap's switchport config follow the standard config set
+au833m-f06-ap30 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet2/5, ap's switchport config follow the standard config set
+au833m-f06-ap68 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet5/1, ap's switchport config follow the standard config set
+au833m-f06-ap67 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet5/2, ap's switchport config follow the standard config set
+au833m-f06-ap70 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet5/3, ap's switchport config follow the standard config set
+au833m-f06-ap23 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet5/4, ap's switchport config follow the standard config set
+au833m-f06-ap62 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet5/5, ap's switchport config follow the standard config set
+au833m-f06-ap62connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet5/5, the ap fail to authenticate connected switch and fail to learn mac address
+    au833m-f06-ap62 's port TenGigabitEthernet5/5 is up, line protocol is up
+au833m-f06-ap18 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet5/6, ap's switchport config follow the standard config set
+au833m-f06-ap21 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet6/1, ap's switchport config follow the standard config set
+au833m-f06-ap14 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet6/2, ap's switchport config follow the standard config set
+au833m-f06-ap15 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet6/3, ap's switchport config follow the standard config set
+au833m-f06-ap71 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet6/4, ap's switchport config follow the standard config set
+au833m-f06-ap24 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet6/5, ap's switchport config follow the standard config set
+au833m-f06-ap58 connected to m-anz-vic-au833csm-f06-ds11's TenGigabitEthernet6/6, ap's switchport config follow the standard config set
+
+
+
+
+au833m-f03-ap91 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet1/1, ap's switchport config follow the standard config set
+au833m-f03-ap81 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet1/2, ap's switchport config follow the standard config set
+au833m-f03-ap65 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet1/3, ap's switchport config follow the standard config set
+au833m-f03-ap69 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet1/4, ap's switchport config follow the standard config set
+au833m-f03-ap85 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet1/5, ap's switchport config follow the standard config set
+au833m-f03-ap70 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet2/1, ap's switchport config follow the standard config set
+au833m-f03-ap76 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet2/2, ap's switchport config follow the standard config set
+au833m-f03-ap72 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet2/3, ap's switchport config follow the standard config set
+au833m-f03-ap74 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet2/4, ap's switchport config follow the standard config set
+au833m-f03-ap71 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet2/5, ap's switchport config follow the standard config set
+au833m-f03-ap75 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet3/1, ap's switchport config follow the standard config set
+au833m-f03-ap90 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet3/11, ap's switchport config follow the standard config set
+au833m-f03-ap79 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet4/1, ap's switchport config follow the standard config set
+au833m-f03-ap80 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet4/2, ap's switchport config follow the standard config set
+au833m-f03-ap78 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet4/3, ap's switchport config follow the standard config set
+au833m-f03-ap83 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet4/4, ap's switchport config follow the standard config set
+au833m-f03-ap82 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet7/1, ap's switchport config follow the standard config set
+au833m-f03-ap84 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet7/2, ap's switchport config follow the standard config set
+au833m-f03-ap77 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet7/3, ap's switchport config follow the standard config set
+au833m-f03-ap94 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet7/10, ap's switchport config follow the standard config set
+au833m-f03-ap87 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet8/1, ap's switchport config follow the standard config set
+au833m-f03-ap92 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet8/2, ap's switchport config follow the standard config set
+au833m-f03-ap89 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet9/1, ap's switchport config follow the standard config set
+au833m-f03-ap93 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet9/4, ap's switchport config follow the standard config set
+au833m-f03-ap88 connected to m-anz-vic-au833csm-f03-ds31's TenGigabitEthernet9/9, 'authentication host-mode multi-domain' missed in ap connected sw port 
