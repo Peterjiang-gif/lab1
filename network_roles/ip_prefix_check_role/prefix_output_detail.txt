@@ -1,0 +1,1074 @@
+Note: prefix-list (xxx)name:deny (or permit) means prefix-list xxx deny (or permit) in its route-map
+
+ban-r-1:
+vrf ANZ_BRANCH route-map SUPPRESS_OTV_JOIN ip traffic out
+  ip prefix OTV-JOIN:
+      seq 5 permit 10.74.58.40/29
+
+   last sequence number is 5
+  ip prefix all:
+vrf ANZ_BRANCH route-map ANZ-BAN ip traffic in
+  ip prefix pfl-domestic-nets:
+      seq 5 permit 160.38.0.0/21
+
+      seq 10 permit 172.18.162.0/24 le 32
+
+      seq 15 permit 10.98.194.194/32
+
+      seq 20 permit 160.39.0.0/16 le 32
+
+      seq 25 permit 160.45.0.0/16 le 32
+
+      seq 30 permit 10.75.8.0/23 le 32
+
+      seq 35 permit 10.98.194.197/32
+
+      seq 40 permit 10.98.194.130/32
+
+      seq 55 permit 10.74.240.0/25 le 32
+
+      seq 65 permit 10.98.164.242/32
+
+      seq 75 permit 10.98.164.248/29 le 32
+
+      seq 80 permit 10.74.132.0/22 le 32
+
+      seq 100 permit 10.74.244.0/23 le 32
+
+      seq 125 permit 10.98.164.131/32
+
+      seq 130 permit 10.98.164.225/32
+
+      seq 135 permit 10.98.164.162/32
+
+      seq 145 permit 10.98.164.192/28 le 32
+
+      seq 150 permit 10.74.32.0/20 le 32
+
+      seq 155 permit 10.74.0.0/20 le 32
+
+      seq 160 permit 10.98.194.142/32
+
+      seq 165 permit 10.98.194.143/32
+
+      seq 170 permit 10.74.242.0/23 le 32
+
+      seq 180 permit 10.98.164.160/29 le 32
+
+      seq 185 permit 10.98.164.88/29 le 32
+
+      seq 195 permit 10.98.164.64/28 le 32
+
+      seq 200 permit 10.99.8.0/28 le 32
+
+      seq 205 permit 10.99.8.232/29 le 32
+
+      seq 210 permit 10.99.8.240/29 le 32
+
+      seq 215 permit 10.98.194.132/32
+
+      seq 225 permit 10.99.8.248/29 le 32
+
+      seq 230 permit 160.45.24.0/23 le 32
+
+      seq 235 permit 10.98.164.112/28 le 32
+
+      seq 250 permit 10.75.10.0/23
+
+      seq 255 permit 10.98.164.108/32
+
+      seq 260 permit 10.98.164.82/32
+
+      seq 265 permit 160.74.0.0/16 le 32
+
+      seq 270 permit 172.18.74.0/24 le 32
+
+      seq 275 permit 10.74.128.0/22 le 32
+
+      seq 280 permit 10.98.164.0/27 le 32
+
+      seq 285 permit 10.98.164.96/28 le 32
+
+      seq 290 permit 10.99.34.34/32
+
+      seq 295 permit 10.98.194.162/32
+
+      seq 300 permit 10.98.194.170/32
+
+      seq 305 permit 10.98.194.171/32
+
+      seq 310 permit 10.98.164.98/32
+
+      seq 315 permit 10.98.164.99/32
+
+      seq 320 permit 10.98.164.100/32
+
+      seq 325 permit 10.98.164.101/32
+
+      seq 330 permit 10.98.164.0/24 le 32
+
+      seq 335 permit 10.74.192.0/20 le 32
+
+      seq 340 permit 10.74.208.0/20 le 32
+
+      seq 345 permit 10.99.8.25/32
+
+      seq 350 permit 10.99.8.26/32
+
+      seq 355 permit 10.99.8.27/32
+
+      seq 360 permit 10.99.8.192/27 le 32
+
+      seq 365 permit 10.98.194.139/32
+
+      seq 370 permit 10.98.194.134/32
+
+      seq 375 permit 10.201.68.19/32
+
+      seq 380 permit 10.201.68.2/32
+
+      seq 385 permit 10.201.68.6/32
+
+      seq 390 permit 10.201.74.200/29 le 32
+
+      seq 395 permit 10.201.68.3/32
+
+      seq 400 permit 10.201.73.0/28 le 32
+
+      seq 405 permit 10.201.68.7/32
+
+      seq 410 permit 10.201.74.216/29 le 32
+
+      seq 415 permit 10.201.68.8/32
+
+      seq 420 permit 10.201.72.64/27 le 32
+
+      seq 425 permit 10.201.68.10/32
+
+      seq 430 permit 10.201.74.232/29 le 32
+
+      seq 435 permit 10.201.68.11/32
+
+      seq 440 permit 10.201.74.248/29 le 32
+
+      seq 445 permit 10.201.68.14/32
+
+      seq 450 permit 10.201.75.128/29 le 32
+
+      seq 455 permit 10.201.68.15/32
+
+      seq 460 permit 10.201.75.144/29 le 32
+
+      seq 465 permit 10.201.68.4/32
+
+      seq 470 permit 10.201.68.5/32
+
+      seq 475 permit 10.201.68.9/32
+
+      seq 480 permit 10.201.74.176/29 le 32
+
+   last sequence number is 480
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-domestic-nets:deny,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-domestic-nets:deny,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-domestic-nets:deny,
+  ip prefix pfl-mgmt-branch:
+      seq 5 permit 10.99.8.0/24 le 32
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-mgmt-branch:deny,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-mgmt-branch:deny,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-mgmt-branch:deny,
+  ip prefix all:
+vrf CHINA_BRANCH route-map BAN-ANZ ip traffic in
+  ip prefix pfl-domestic-nets:
+      seq 5 permit 160.38.0.0/21
+
+      seq 10 permit 172.18.162.0/24 le 32
+
+      seq 15 permit 10.98.194.194/32
+
+      seq 20 permit 160.39.0.0/16 le 32
+
+      seq 25 permit 160.45.0.0/16 le 32
+
+      seq 30 permit 10.75.8.0/23 le 32
+
+      seq 35 permit 10.98.194.197/32
+
+      seq 40 permit 10.98.194.130/32
+
+      seq 55 permit 10.74.240.0/25 le 32
+
+      seq 65 permit 10.98.164.242/32
+
+      seq 75 permit 10.98.164.248/29 le 32
+
+      seq 80 permit 10.74.132.0/22 le 32
+
+      seq 100 permit 10.74.244.0/23 le 32
+
+      seq 125 permit 10.98.164.131/32
+
+      seq 130 permit 10.98.164.225/32
+
+      seq 135 permit 10.98.164.162/32
+
+      seq 145 permit 10.98.164.192/28 le 32
+
+      seq 150 permit 10.74.32.0/20 le 32
+
+      seq 155 permit 10.74.0.0/20 le 32
+
+      seq 160 permit 10.98.194.142/32
+
+      seq 165 permit 10.98.194.143/32
+
+      seq 170 permit 10.74.242.0/23 le 32
+
+      seq 180 permit 10.98.164.160/29 le 32
+
+      seq 185 permit 10.98.164.88/29 le 32
+
+      seq 195 permit 10.98.164.64/28 le 32
+
+      seq 200 permit 10.99.8.0/28 le 32
+
+      seq 205 permit 10.99.8.232/29 le 32
+
+      seq 210 permit 10.99.8.240/29 le 32
+
+      seq 215 permit 10.98.194.132/32
+
+      seq 225 permit 10.99.8.248/29 le 32
+
+      seq 230 permit 160.45.24.0/23 le 32
+
+      seq 235 permit 10.98.164.112/28 le 32
+
+      seq 250 permit 10.75.10.0/23
+
+      seq 255 permit 10.98.164.108/32
+
+      seq 260 permit 10.98.164.82/32
+
+      seq 265 permit 160.74.0.0/16 le 32
+
+      seq 270 permit 172.18.74.0/24 le 32
+
+      seq 275 permit 10.74.128.0/22 le 32
+
+      seq 280 permit 10.98.164.0/27 le 32
+
+      seq 285 permit 10.98.164.96/28 le 32
+
+      seq 290 permit 10.99.34.34/32
+
+      seq 295 permit 10.98.194.162/32
+
+      seq 300 permit 10.98.194.170/32
+
+      seq 305 permit 10.98.194.171/32
+
+      seq 310 permit 10.98.164.98/32
+
+      seq 315 permit 10.98.164.99/32
+
+      seq 320 permit 10.98.164.100/32
+
+      seq 325 permit 10.98.164.101/32
+
+      seq 330 permit 10.98.164.0/24 le 32
+
+      seq 335 permit 10.74.192.0/20 le 32
+
+      seq 340 permit 10.74.208.0/20 le 32
+
+      seq 345 permit 10.99.8.25/32
+
+      seq 350 permit 10.99.8.26/32
+
+      seq 355 permit 10.99.8.27/32
+
+      seq 360 permit 10.99.8.192/27 le 32
+
+      seq 365 permit 10.98.194.139/32
+
+      seq 370 permit 10.98.194.134/32
+
+      seq 375 permit 10.201.68.19/32
+
+      seq 380 permit 10.201.68.2/32
+
+      seq 385 permit 10.201.68.6/32
+
+      seq 390 permit 10.201.74.200/29 le 32
+
+      seq 395 permit 10.201.68.3/32
+
+      seq 400 permit 10.201.73.0/28 le 32
+
+      seq 405 permit 10.201.68.7/32
+
+      seq 410 permit 10.201.74.216/29 le 32
+
+      seq 415 permit 10.201.68.8/32
+
+      seq 420 permit 10.201.72.64/27 le 32
+
+      seq 425 permit 10.201.68.10/32
+
+      seq 430 permit 10.201.74.232/29 le 32
+
+      seq 435 permit 10.201.68.11/32
+
+      seq 440 permit 10.201.74.248/29 le 32
+
+      seq 445 permit 10.201.68.14/32
+
+      seq 450 permit 10.201.75.128/29 le 32
+
+      seq 455 permit 10.201.68.15/32
+
+      seq 460 permit 10.201.75.144/29 le 32
+
+      seq 465 permit 10.201.68.4/32
+
+      seq 470 permit 10.201.68.5/32
+
+      seq 475 permit 10.201.68.9/32
+
+      seq 480 permit 10.201.74.176/29 le 32
+
+   last sequence number is 480
+  ip prefix pfl-mgmt-branch:
+      seq 5 permit 10.99.8.0/24 le 32
+
+ran-r-1:
+vrf INTL_BRANCH route-map ANZ_ROUTE_BRANCH ip traffic out
+  ip prefix pfl-CN023-nets:
+      seq 5 permit 10.99.34.17/32
+
+      seq 10 permit 10.99.34.18/32
+
+      seq 15 permit 10.99.34.19/32
+
+      seq 20 permit 10.99.34.20/32
+
+      seq 25 permit 10.99.34.21/32
+
+      seq 30 permit 10.74.48.0/20 le 32
+
+      seq 35 permit 10.99.34.11/32
+
+      seq 40 permit 10.99.34.12/32
+
+      seq 45 permit 10.99.34.13/32
+
+      seq 50 permit 10.99.34.14/32
+
+      seq 55 permit 10.99.34.15/32
+
+      seq 60 permit 10.99.34.16/28 le 32
+
+      seq 65 permit 10.201.68.21/32
+
+      seq 70 permit 10.201.68.19/32
+
+      seq 75 permit 10.201.68.20/32
+
+      seq 80 permit 10.201.75.3/32
+
+      seq 85 permit 10.201.75.13/32
+
+      seq 90 permit 10.201.75.14/32
+
+      seq 95 permit 10.201.75.4/32
+
+   last sequence number is 95
+   target vlan 14+10.74.51.251 is covered in prefix-list pfl-CN023-nets:permit,
+   target vlan 15+10.74.60.123 is covered in prefix-list pfl-CN023-nets:permit,
+   target vlan 24+10.74.54.251 is covered in prefix-list pfl-CN023-nets:permit,
+  ip prefix pfl-CN022-nets:
+      seq 5 permit 10.99.34.49/32
+
+      seq 10 permit 10.99.34.50/32
+
+      seq 15 permit 10.99.34.51/32
+
+      seq 20 permit 10.99.34.52/32
+
+      seq 25 permit 10.99.34.53/32
+
+      seq 30 permit 10.74.16.0/20 le 32
+
+      seq 35 permit 10.99.34.43/32
+
+      seq 40 permit 10.99.34.44/32
+
+      seq 45 permit 10.99.34.45/32
+
+      seq 50 permit 10.99.34.46/32
+
+      seq 55 permit 10.99.34.47/32
+
+      seq 60 permit 10.99.34.48/28 le 32
+
+      seq 65 permit 10.74.246.0/23 le 32
+
+      seq 70 permit 10.98.164.32/27 le 32
+
+      seq 75 permit 10.98.164.136/32
+
+      seq 80 permit 10.98.164.137/32
+
+   last sequence number is 80
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-CN022-nets:permit,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-CN022-nets:permit,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-CN022-nets:permit,
+  ip prefix pfl-domestic-nets:
+      seq 5 permit 160.38.0.0/21
+
+      seq 10 permit 172.18.162.0/24 le 32
+
+      seq 15 permit 10.98.194.194/32
+
+      seq 20 permit 160.39.0.0/16 le 32
+
+      seq 25 permit 160.45.0.0/16 le 32
+
+      seq 30 permit 10.75.8.0/23 le 32
+
+      seq 35 permit 10.98.194.197/32
+
+      seq 40 permit 10.98.194.130/32
+
+      seq 55 permit 10.74.240.0/25 le 32
+
+      seq 65 permit 10.98.164.242/32
+
+      seq 75 permit 10.98.164.248/29 le 32
+
+      seq 80 permit 10.74.132.0/22 le 32
+
+      seq 100 permit 10.74.244.0/23 le 32
+
+      seq 125 permit 10.98.164.131/32
+
+      seq 130 permit 10.98.164.225/32
+
+      seq 135 permit 10.98.164.162/32
+
+      seq 145 permit 10.98.164.192/28 le 32
+
+      seq 150 permit 10.74.32.0/20 le 32
+
+      seq 155 permit 10.74.0.0/20 le 32
+
+      seq 160 permit 10.98.194.142/32
+
+      seq 165 permit 10.98.194.143/32
+
+      seq 170 permit 10.74.242.0/23 le 32
+
+      seq 180 permit 10.98.164.160/29 le 32
+
+      seq 185 permit 10.98.164.88/29 le 32
+
+      seq 195 permit 10.98.164.64/28 le 32
+
+      seq 200 permit 10.99.8.0/28 le 32
+
+      seq 205 permit 10.99.8.232/29 le 32
+
+      seq 210 permit 10.99.8.240/29 le 32
+
+      seq 215 permit 10.98.194.132/32
+
+      seq 225 permit 10.99.8.248/29 le 32
+
+      seq 230 permit 160.45.24.0/23 le 32
+
+      seq 235 permit 10.98.164.112/28 le 32
+
+      seq 250 permit 10.75.10.0/23
+
+      seq 255 permit 10.98.164.108/32
+
+      seq 260 permit 10.98.164.82/32
+
+      seq 265 permit 160.74.0.0/16 le 32
+
+      seq 270 permit 172.18.74.0/24 le 32
+
+      seq 275 permit 10.74.128.0/22 le 32
+
+      seq 280 permit 10.98.164.0/27 le 32
+
+      seq 285 permit 10.98.164.96/28 le 32
+
+      seq 290 permit 10.99.34.34/32
+
+      seq 295 permit 10.98.194.162/32
+
+      seq 300 permit 10.98.194.170/32
+
+      seq 305 permit 10.98.194.171/32
+
+      seq 310 permit 10.98.164.98/32
+
+      seq 315 permit 10.98.164.99/32
+
+      seq 320 permit 10.98.164.100/32
+
+      seq 325 permit 10.98.164.101/32
+
+      seq 330 permit 10.98.164.0/24 le 32
+
+      seq 335 permit 10.74.192.0/20 le 32
+
+      seq 340 permit 10.74.208.0/20 le 32
+
+      seq 345 permit 10.99.8.25/32
+
+      seq 350 permit 10.99.8.26/32
+
+      seq 355 permit 10.99.8.27/32
+
+      seq 360 permit 10.99.8.192/27 le 32
+
+      seq 365 permit 10.98.194.139/32
+
+      seq 370 permit 10.98.194.134/32
+
+      seq 375 permit 10.201.68.2/32
+
+      seq 380 permit 10.201.68.6/32
+
+      seq 385 permit 10.201.74.200/29 le 32
+
+      seq 390 permit 10.201.68.3/32
+
+      seq 395 permit 10.201.73.0/28 le 32
+
+      seq 400 permit 10.201.68.7/32
+
+      seq 405 permit 10.201.74.216/29 le 32
+
+      seq 410 permit 10.201.68.8/32
+
+      seq 415 permit 10.201.72.64/27 le 32
+
+      seq 420 permit 10.201.68.10/32
+
+      seq 425 permit 10.201.74.232/29 le 32
+
+      seq 430 permit 10.201.68.11/32
+
+      seq 435 permit 10.201.74.248/29 le 32
+
+      seq 440 permit 10.201.68.14/32
+
+      seq 445 permit 10.201.75.128/29 le 32
+
+      seq 450 permit 10.201.68.15/32
+
+      seq 455 permit 10.201.75.144/29 le 32
+
+      seq 460 permit 10.201.68.4/32
+
+      seq 465 permit 10.201.68.5/32
+
+      seq 470 permit 10.201.68.9/32
+
+      seq 475 permit 10.201.74.176/29 le 32
+
+   last sequence number is 475
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-domestic-nets:permit,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-domestic-nets:permit,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-domestic-nets:permit,
+  ip prefix pfl-mgmt-branch:
+      seq 5 permit 10.99.8.0/24 le 32
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-mgmt-branch:permit,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-mgmt-branch:permit,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-mgmt-branch:permit,
+vrf INTL_BRANCH route-map ANZ_FILTER_BRANCH ip traffic in
+  ip prefix pfl-CN023-nets:
+      seq 5 permit 10.99.34.17/32
+
+      seq 10 permit 10.99.34.18/32
+
+      seq 15 permit 10.99.34.19/32
+
+      seq 20 permit 10.99.34.20/32
+
+      seq 25 permit 10.99.34.21/32
+
+      seq 30 permit 10.74.48.0/20 le 32
+
+      seq 35 permit 10.99.34.11/32
+
+      seq 40 permit 10.99.34.12/32
+
+      seq 45 permit 10.99.34.13/32
+
+      seq 50 permit 10.99.34.14/32
+
+      seq 55 permit 10.99.34.15/32
+
+      seq 60 permit 10.99.34.16/28 le 32
+
+      seq 65 permit 10.201.68.21/32
+
+      seq 70 permit 10.201.68.19/32
+
+      seq 75 permit 10.201.68.20/32
+
+      seq 80 permit 10.201.75.3/32
+
+      seq 85 permit 10.201.75.13/32
+
+      seq 90 permit 10.201.75.14/32
+
+      seq 95 permit 10.201.75.4/32
+
+   last sequence number is 95
+  ip prefix pfl-CN022-nets:
+      seq 5 permit 10.99.34.49/32
+
+      seq 10 permit 10.99.34.50/32
+
+      seq 15 permit 10.99.34.51/32
+
+      seq 20 permit 10.99.34.52/32
+
+      seq 25 permit 10.99.34.53/32
+
+      seq 30 permit 10.74.16.0/20 le 32
+
+      seq 35 permit 10.99.34.43/32
+
+      seq 40 permit 10.99.34.44/32
+
+      seq 45 permit 10.99.34.45/32
+
+      seq 50 permit 10.99.34.46/32
+
+      seq 55 permit 10.99.34.47/32
+
+      seq 60 permit 10.99.34.48/28 le 32
+
+      seq 65 permit 10.74.246.0/23 le 32
+
+      seq 70 permit 10.98.164.32/27 le 32
+
+      seq 75 permit 10.98.164.136/32
+
+      seq 80 permit 10.98.164.137/32
+
+   last sequence number is 80
+  ip prefix pfl-domestic-nets:
+      seq 5 permit 160.38.0.0/21
+
+      seq 10 permit 172.18.162.0/24 le 32
+
+      seq 15 permit 10.98.194.194/32
+
+      seq 20 permit 160.39.0.0/16 le 32
+
+      seq 25 permit 160.45.0.0/16 le 32
+
+      seq 30 permit 10.75.8.0/23 le 32
+
+      seq 35 permit 10.98.194.197/32
+
+      seq 40 permit 10.98.194.130/32
+
+      seq 55 permit 10.74.240.0/25 le 32
+
+      seq 65 permit 10.98.164.242/32
+
+      seq 75 permit 10.98.164.248/29 le 32
+
+      seq 80 permit 10.74.132.0/22 le 32
+
+      seq 100 permit 10.74.244.0/23 le 32
+
+      seq 125 permit 10.98.164.131/32
+
+      seq 130 permit 10.98.164.225/32
+
+      seq 135 permit 10.98.164.162/32
+
+      seq 145 permit 10.98.164.192/28 le 32
+
+      seq 150 permit 10.74.32.0/20 le 32
+
+      seq 155 permit 10.74.0.0/20 le 32
+
+      seq 160 permit 10.98.194.142/32
+
+      seq 165 permit 10.98.194.143/32
+
+      seq 170 permit 10.74.242.0/23 le 32
+
+      seq 180 permit 10.98.164.160/29 le 32
+
+      seq 185 permit 10.98.164.88/29 le 32
+
+      seq 195 permit 10.98.164.64/28 le 32
+
+      seq 200 permit 10.99.8.0/28 le 32
+
+      seq 205 permit 10.99.8.232/29 le 32
+
+      seq 210 permit 10.99.8.240/29 le 32
+
+      seq 215 permit 10.98.194.132/32
+
+      seq 225 permit 10.99.8.248/29 le 32
+
+      seq 230 permit 160.45.24.0/23 le 32
+
+      seq 235 permit 10.98.164.112/28 le 32
+
+      seq 250 permit 10.75.10.0/23
+
+      seq 255 permit 10.98.164.108/32
+
+      seq 260 permit 10.98.164.82/32
+
+      seq 265 permit 160.74.0.0/16 le 32
+
+      seq 270 permit 172.18.74.0/24 le 32
+
+      seq 275 permit 10.74.128.0/22 le 32
+
+      seq 280 permit 10.98.164.0/27 le 32
+
+      seq 285 permit 10.98.164.96/28 le 32
+
+      seq 290 permit 10.99.34.34/32
+
+      seq 295 permit 10.98.194.162/32
+
+      seq 300 permit 10.98.194.170/32
+
+      seq 305 permit 10.98.194.171/32
+
+      seq 310 permit 10.98.164.98/32
+
+      seq 315 permit 10.98.164.99/32
+
+      seq 320 permit 10.98.164.100/32
+
+      seq 325 permit 10.98.164.101/32
+
+      seq 330 permit 10.98.164.0/24 le 32
+
+      seq 335 permit 10.74.192.0/20 le 32
+
+      seq 340 permit 10.74.208.0/20 le 32
+
+      seq 345 permit 10.99.8.25/32
+
+      seq 350 permit 10.99.8.26/32
+
+      seq 355 permit 10.99.8.27/32
+
+      seq 360 permit 10.99.8.192/27 le 32
+
+      seq 365 permit 10.98.194.139/32
+
+      seq 370 permit 10.98.194.134/32
+
+      seq 375 permit 10.201.68.2/32
+
+      seq 380 permit 10.201.68.6/32
+
+      seq 385 permit 10.201.74.200/29 le 32
+
+      seq 390 permit 10.201.68.3/32
+
+      seq 395 permit 10.201.73.0/28 le 32
+
+      seq 400 permit 10.201.68.7/32
+
+      seq 405 permit 10.201.74.216/29 le 32
+
+      seq 410 permit 10.201.68.8/32
+
+      seq 415 permit 10.201.72.64/27 le 32
+
+      seq 420 permit 10.201.68.10/32
+
+      seq 425 permit 10.201.74.232/29 le 32
+
+      seq 430 permit 10.201.68.11/32
+
+      seq 435 permit 10.201.74.248/29 le 32
+
+      seq 440 permit 10.201.68.14/32
+
+      seq 445 permit 10.201.75.128/29 le 32
+
+      seq 450 permit 10.201.68.15/32
+
+      seq 455 permit 10.201.75.144/29 le 32
+
+      seq 460 permit 10.201.68.4/32
+
+      seq 465 permit 10.201.68.5/32
+
+      seq 470 permit 10.201.68.9/32
+
+      seq 475 permit 10.201.74.176/29 le 32
+
+   last sequence number is 475
+  ip prefix pfl-mgmt-branch:
+      seq 5 permit 10.99.8.0/24 le 32
+  ip prefix all:
+vrf ANZ_BRANCH route-map ANZ_ROUTE_BRANCH ip traffic in
+  ip prefix pfl-CN023-nets:
+      seq 5 permit 10.99.34.17/32
+
+      seq 10 permit 10.99.34.18/32
+
+      seq 15 permit 10.99.34.19/32
+
+      seq 20 permit 10.99.34.20/32
+
+      seq 25 permit 10.99.34.21/32
+
+      seq 30 permit 10.74.48.0/20 le 32
+
+      seq 35 permit 10.99.34.11/32
+
+      seq 40 permit 10.99.34.12/32
+
+      seq 45 permit 10.99.34.13/32
+
+      seq 50 permit 10.99.34.14/32
+
+      seq 55 permit 10.99.34.15/32
+
+      seq 60 permit 10.99.34.16/28 le 32
+
+      seq 65 permit 10.201.68.21/32
+
+      seq 70 permit 10.201.68.19/32
+
+      seq 75 permit 10.201.68.20/32
+
+      seq 80 permit 10.201.75.3/32
+
+      seq 85 permit 10.201.75.13/32
+
+      seq 90 permit 10.201.75.14/32
+
+      seq 95 permit 10.201.75.4/32
+
+   last sequence number is 95
+   target vlan 14+10.74.51.251 is covered in prefix-list pfl-CN023-nets:permit,
+   target vlan 15+10.74.60.123 is covered in prefix-list pfl-CN023-nets:permit,
+   target vlan 24+10.74.54.251 is covered in prefix-list pfl-CN023-nets:permit,
+  ip prefix pfl-CN022-nets:
+      seq 5 permit 10.99.34.49/32
+
+      seq 10 permit 10.99.34.50/32
+
+      seq 15 permit 10.99.34.51/32
+
+      seq 20 permit 10.99.34.52/32
+
+      seq 25 permit 10.99.34.53/32
+
+      seq 30 permit 10.74.16.0/20 le 32
+
+      seq 35 permit 10.99.34.43/32
+
+      seq 40 permit 10.99.34.44/32
+
+      seq 45 permit 10.99.34.45/32
+
+      seq 50 permit 10.99.34.46/32
+
+      seq 55 permit 10.99.34.47/32
+
+      seq 60 permit 10.99.34.48/28 le 32
+
+      seq 65 permit 10.74.246.0/23 le 32
+
+      seq 70 permit 10.98.164.32/27 le 32
+
+      seq 75 permit 10.98.164.136/32
+
+      seq 80 permit 10.98.164.137/32
+
+   last sequence number is 80
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-CN022-nets:permit,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-CN022-nets:permit,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-CN022-nets:permit,
+  ip prefix pfl-domestic-nets:
+      seq 5 permit 160.38.0.0/21
+
+      seq 10 permit 172.18.162.0/24 le 32
+
+      seq 15 permit 10.98.194.194/32
+
+      seq 20 permit 160.39.0.0/16 le 32
+
+      seq 25 permit 160.45.0.0/16 le 32
+
+      seq 30 permit 10.75.8.0/23 le 32
+
+      seq 35 permit 10.98.194.197/32
+
+      seq 40 permit 10.98.194.130/32
+
+      seq 55 permit 10.74.240.0/25 le 32
+
+      seq 65 permit 10.98.164.242/32
+
+      seq 75 permit 10.98.164.248/29 le 32
+
+      seq 80 permit 10.74.132.0/22 le 32
+
+      seq 100 permit 10.74.244.0/23 le 32
+
+      seq 125 permit 10.98.164.131/32
+
+      seq 130 permit 10.98.164.225/32
+
+      seq 135 permit 10.98.164.162/32
+
+      seq 145 permit 10.98.164.192/28 le 32
+
+      seq 150 permit 10.74.32.0/20 le 32
+
+      seq 155 permit 10.74.0.0/20 le 32
+
+      seq 160 permit 10.98.194.142/32
+
+      seq 165 permit 10.98.194.143/32
+
+      seq 170 permit 10.74.242.0/23 le 32
+
+      seq 180 permit 10.98.164.160/29 le 32
+
+      seq 185 permit 10.98.164.88/29 le 32
+
+      seq 195 permit 10.98.164.64/28 le 32
+
+      seq 200 permit 10.99.8.0/28 le 32
+
+      seq 205 permit 10.99.8.232/29 le 32
+
+      seq 210 permit 10.99.8.240/29 le 32
+
+      seq 215 permit 10.98.194.132/32
+
+      seq 225 permit 10.99.8.248/29 le 32
+
+      seq 230 permit 160.45.24.0/23 le 32
+
+      seq 235 permit 10.98.164.112/28 le 32
+
+      seq 250 permit 10.75.10.0/23
+
+      seq 255 permit 10.98.164.108/32
+
+      seq 260 permit 10.98.164.82/32
+
+      seq 265 permit 160.74.0.0/16 le 32
+
+      seq 270 permit 172.18.74.0/24 le 32
+
+      seq 275 permit 10.74.128.0/22 le 32
+
+      seq 280 permit 10.98.164.0/27 le 32
+
+      seq 285 permit 10.98.164.96/28 le 32
+
+      seq 290 permit 10.99.34.34/32
+
+      seq 295 permit 10.98.194.162/32
+
+      seq 300 permit 10.98.194.170/32
+
+      seq 305 permit 10.98.194.171/32
+
+      seq 310 permit 10.98.164.98/32
+
+      seq 315 permit 10.98.164.99/32
+
+      seq 320 permit 10.98.164.100/32
+
+      seq 325 permit 10.98.164.101/32
+
+      seq 330 permit 10.98.164.0/24 le 32
+
+      seq 335 permit 10.74.192.0/20 le 32
+
+      seq 340 permit 10.74.208.0/20 le 32
+
+      seq 345 permit 10.99.8.25/32
+
+      seq 350 permit 10.99.8.26/32
+
+      seq 355 permit 10.99.8.27/32
+
+      seq 360 permit 10.99.8.192/27 le 32
+
+      seq 365 permit 10.98.194.139/32
+
+      seq 370 permit 10.98.194.134/32
+
+      seq 375 permit 10.201.68.2/32
+
+      seq 380 permit 10.201.68.6/32
+
+      seq 385 permit 10.201.74.200/29 le 32
+
+      seq 390 permit 10.201.68.3/32
+
+      seq 395 permit 10.201.73.0/28 le 32
+
+      seq 400 permit 10.201.68.7/32
+
+      seq 405 permit 10.201.74.216/29 le 32
+
+      seq 410 permit 10.201.68.8/32
+
+      seq 415 permit 10.201.72.64/27 le 32
+
+      seq 420 permit 10.201.68.10/32
+
+      seq 425 permit 10.201.74.232/29 le 32
+
+      seq 430 permit 10.201.68.11/32
+
+      seq 435 permit 10.201.74.248/29 le 32
+
+      seq 440 permit 10.201.68.14/32
+
+      seq 445 permit 10.201.75.128/29 le 32
+
+      seq 450 permit 10.201.68.15/32
+
+      seq 455 permit 10.201.75.144/29 le 32
+
+      seq 460 permit 10.201.68.4/32
+
+      seq 465 permit 10.201.68.5/32
+
+      seq 470 permit 10.201.68.9/32
+
+      seq 475 permit 10.201.74.176/29 le 32
+
+   last sequence number is 475
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-domestic-nets:permit,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-domestic-nets:permit,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-domestic-nets:permit,
+  ip prefix pfl-mgmt-branch:
+      seq 5 permit 10.99.8.0/24 le 32
+   target vlan 14+10.74.51.251 is not covered in prefix-list pfl-mgmt-branch:permit,
+   target vlan 15+10.74.60.123 is not covered in prefix-list pfl-mgmt-branch:permit,
+   target vlan 24+10.74.54.251 is not covered in prefix-list pfl-mgmt-branch:permit,

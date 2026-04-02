@@ -1,0 +1,297 @@
+from datetime import datetime
+import os 
+import re
+site_router=[]
+filewrite=open('prefix_output_detail.txt','a')
+filewrite.write("Note: prefix-list (xxx)name:deny (or permit) means prefix-list xxx deny (or permit) in its route-map")
+filewrite.write('\n')
+with open ('device.txt','r') as files: 
+   for line in files: 
+     result=line.split()
+     res=result[0].split('-')
+     m=len(res)
+     for i in range(0,m): 
+       if i==(m-int(2)): 
+          if res[i]=="r" or res[i]=="R":
+             site_router.append(result[0]+"_"+result[1])
+files.close
+vlans_ip=[]
+m=len(site_router)
+with open('ini.txt','r') as output:
+     for line in output:
+         line=line.strip()
+         if line!="":
+            vlans_ip.append(line)
+output.close 
+related_route_map=[]
+with open('related_route_map.txt','r') as output:
+     for line in output:
+         if line!="":
+            info=line.split()
+            value=info[0]+"&&"+info[1]
+            related_route_map.append(value)
+output.close            
+         
+        
+for i in range(0,m):
+     res=site_router[i].split('_')
+     filewrite.write('\n')
+     filewrite.write(res[0]+":")
+     filewrite.write('\n')     
+     distribute=[]
+     route_map=""
+     prefix_list=""
+     prefix_ips=[]
+     with open(res[0]+'_r_eigrp.txt','r') as output:
+          start_flag="false"
+          vrf=""
+          map_name=""
+          direct=""
+          for line in output:
+              if start_flag=="ture":
+                 if 'distribute-list' in line:
+                    result=line.split()
+                    if len(result)>int(3):
+                       map_name=result[2]
+                       direct=result[3]
+                       distribute.append(vrf+"+"+map_name+"+"+direct)
+                 if 'exit-address-family' in line:
+                    start_flag="false"
+              if 'address-family' in line and 'vrf' in line:
+                 start_flag="ture"
+                 info=line.split()
+                 if len(info)>int(3):
+                    vrf=info[3]
+     output.close
+         
+     n=len(distribute)
+     if n>int(0):
+        for j in range(0,n):
+           
+            result=distribute[j].split('+')
+            filewrite.write("vrf "+result[0]+" route-map "+result[1]+" ip traffic "+result[2])
+            filewrite.write('\n')
+            route_map=result[1]
+            match_flag="false" 
+            leng=len(related_route_map)
+            if leng>int(0):
+               for L in range(0,leng):
+                   comp=related_route_map[L].split('&&')
+                   if result[2]==comp[1] and result[0]==comp[0]:
+                      match_flag="ture"
+                  
+            prefix_record=[]               
+            with open(res[0]+'_route_map.txt','r') as output:  
+                 start_flag="false"
+                 match_ip_find="false"
+                 allow=""
+                 prefix_record=[]                 
+                 for line in output:
+                     if start_flag=="ture":
+                        if 'Match clauses' in line:
+                            match_ip_find="ture" 
+                        if 'prefix-lists:' in line:
+                            if match_ip_find=="ture":
+                               match_ip_find="false"
+                               record=line.split()
+                               if len(record)>int(3):
+                                     prefix_list=record[3] 
+                                     prefix_record.append(prefix_list+":"+allow)                                     
+                        if 'route-map' in line:
+                           info=line.split()
+                           if info[0]=="route-map":
+                              start_flag="false"
+                              if match_ip_find=="ture":
+                                 match_ip_find="false"  
+                                 prefix_list="all"   
+                                 prefix_record.append(prefix_list+":"+allow)                                 
+                     if 'route-map' in line and route_map in line:                                     
+                        info=line.split()
+                        if info[1]==route_map+",":
+                           start_flag="ture" 
+                        if len(info)>int(2):
+                           allow=info[2] 
+            output.close
+          
+            if len(prefix_record)>int(0): 
+               for k in range (0,len(prefix_record)): 
+                   prefix_ips=[]   
+                                    
+                   with open(res[0]+'_ip_prefix.txt','r') as output:                         
+                        start_flag="false"
+                        prefix_info=prefix_record[k].split(':')
+                        sub_prefix=prefix_info[0]
+                        filewrite.write("  ip prefix "+sub_prefix+":")
+                        filewrite.write('\n')
+                        num=""
+                        for line in output:
+                            if start_flag=="ture":
+                               if 'seq' in line and 'permit' in line:
+                                  
+                                  filewrite.write("   "+line)
+                                  filewrite.write('\n')
+                                  result=line.split()
+                                  if len(result)>int(3):
+                                     num=result[1]
+                                     if 'le' in line:
+                                         if len(result)>int(5):
+                                            prefix_ips.append(result[3]+" "+result[4]+" "+result[5])
+                                     else:
+                                            prefix_ips.append(result[3])
+                               if 'ip prefix-list' in line: 
+                                  start_flag="false" 
+                                  filewrite.write("   last sequence number is "+num)
+                                  filewrite.write('\n')          
+                            if 'ip prefix-list' in line and sub_prefix in line:
+                               ip_result=line.split()
+                               if ip_result[2]==sub_prefix+":":
+                                  start_flag="ture"
+                   output.close
+                   
+                   if match_flag=="ture":
+                     
+                      if len(prefix_ips)>int(0):
+                         if len(vlans_ip)>int(0):
+                            for l in range(0,len(vlans_ip)):
+                                info=vlans_ip[l].split('+')
+                                if len(info)>int(0):
+                                   exist_flag="false"
+                                   for o in range(0,len(prefix_ips)):
+                                       rec=prefix_ips[o].split() 
+                                                                            
+                                       if len(rec)==int(1):
+                                          value_one=""
+                                          value_get=rec[0].split('/')
+                                          if len(value_get)>int(1):
+                                             value_one=value_get[1]
+                                          network=[]
+                                          mask=[]
+                                          vlanip=[]
+                                          check_result_one="false"
+                                          rem_ip=value_get[0].split('.')
+                                          if len(rem_ip)>int(0):
+                                             for x in range(0,len(rem_ip)):
+                                                 network.append(rem_ip[x])
+                                          rem_ip=info[1].split('.')
+                                          if len(rem_ip)>int(0):
+                                             for x in range(0,len(rem_ip)):
+                                                 vlanip.append(rem_ip[x]) 
+                                          
+                                          if (int(value_one)/int(8))>int(0):
+                                             for x in range(0,int(int(value_one)/int(8))):
+                                                 va="255"
+                                                 mask.append(str(va))
+                                          if (int(value_one)%int(8))>int(0):
+                                             Va=int(0)
+                                             for x in range(0,int(value_one)%int(8)):     
+                                                 Va=Va+pow(2,(int(7)-int(x)))
+                                             mask.append(str(Va))
+                                          for x in range(len(mask),4):
+                                               va="0"
+                                               mask.append(str(va))
+                                          com_start_flag="false"
+                                          
+                                          if len(network)==int(4) and len(mask)==int(4) and len(vlanip)==int(4):
+                                            com_start_flag="ture"
+                                            sec_com_flag="ture"
+                                            Leng=len(network)
+                                            for z in range(0,Leng):
+                                                if (int(network[z])&int(mask[z]))!=(int(vlanip[z])&int(mask[z])):
+                                                   sec_com_flag="false"
+                                          if com_start_flag=="ture" and sec_com_flag=="ture": 
+                                             check_result_one="ture"
+                                          
+                                          if check_result_one=="ture":
+                                             exist_flag="ture"
+                                           
+                                          
+                                       if len(rec)==int(3):
+                                          value_one=""
+                                          value_two=""
+                                          value_get=rec[0].split('/')
+                                          if len(value_get)>int(1):
+                                             value_one=value_get[1]  
+                                          value_two=rec[2]   
+                                          network=[]
+                                          mask=[]
+                                          vlanip=[]
+                                          check_result_one="false"
+                                          check_result_two="false"
+                                          rem_ip=value_get[0].split('.')
+                                          if len(rem_ip)>int(0):
+                                             for x in range(0,len(rem_ip)):
+                                                 network.append(rem_ip[x])
+                                          rem_ip=info[1].split('.')
+                                          if len(rem_ip)>int(0):
+                                             for x in range(0,len(rem_ip)):
+                                                 vlanip.append(rem_ip[x]) 
+                                          
+                                          if (int(value_one)/int(8))>int(0):
+                                             for x in range(0,int(int(value_one)/int(8))):
+                                                 va="255"
+                                                 mask.append(str(va))
+                                          if (int(value_one)%int(8))>int(0):
+                                             Va=int(0)
+                                             for x in range(0,int(value_one)%int(8)):     
+                                                 Va=Va+pow(2,(int(7)-int(x)))
+                                             mask.append(str(Va))
+                                          for x in range(len(mask),4):
+                                               va="0"
+                                               mask.append(str(va))
+                                          com_start_flag="false"
+                                          
+                                          if len(network)==int(4) and len(mask)==int(4) and len(vlanip)==int(4):
+                                             com_start_flag="ture"
+                                             sec_com_flag="ture"
+                                             Leng=len(network)
+                                             for z in range(0,Leng):
+                                                if (int(network[z])&int(mask[z]))!=(int(vlanip[z])&int(mask[z])):
+                                                   sec_com_flag="false"
+                                          if com_start_flag=="ture" and sec_com_flag=="ture": 
+                                             check_result_one="ture"
+                                          mask=[]   
+                                          if (int(value_two)/int(8))>int(0):
+                                             for x in range(0,int(int(value_two)/int(8))):
+                                                 va="255"
+                                                 mask.append(str(va))
+                                          if (int(value_two)%int(8))>int(0):
+                                             Va=int(0)
+                                             for x in range(0,int(value_two)%int(8)):     
+                                                 Va=int(Va)+pow(2,(int(7)-int(x)))
+                                             mask.append(str(Va))
+                                          for x in range(len(mask),4):
+                                               va="0"
+                                               mask.append(str(va))
+                                          com_start_flag="false"
+                                          
+                                          if len(network)==int(4) and len(mask)==int(4) and len(vlanip)==int(4):
+                                             com_start_flag="ture"
+                                             sec_com_flag="ture"
+                                             Leng=len(network)
+                                             for z in range(0,Leng):
+                                                if (int(network[z])&int(mask[z]))!=(int(vlanip[z])&int(mask[z])):
+                                                   sec_com_flag="false"
+                                          if com_start_flag=="ture" and sec_com_flag=="ture": 
+                                             check_result_two="ture"
+                                          if check_result_one=="ture" and check_result_two=="false":
+                                             exist_flag="ture"
+
+                                   if exist_flag=="ture":
+                                      filewrite.write("   target vlan "+vlans_ip[l]+" is covered in prefix-list "+prefix_record[k])
+                                      filewrite.write('\n')  
+                                   if exist_flag=="false":
+                                      filewrite.write("   target vlan "+vlans_ip[l]+" is not covered in prefix-list "+prefix_record[k])
+                                      filewrite.write('\n')     
+
+
+
+                      else:
+                           if sub_prefix!="all":
+                              filewrite.write("   target vlans ip are not covered in prefix-list "+prefix_record[k])
+                              filewrite.write('\n')                 
+                                         
+                                             
+filewrite.close                     
+                     
+                     
+          

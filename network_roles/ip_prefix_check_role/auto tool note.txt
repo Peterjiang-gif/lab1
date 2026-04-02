@@ -1,0 +1,4 @@
+1 in related_route_map file , the content is the name and traffic direction (in/out in distribute route-map) of the route-map 
+in which's acl/prefix-list  we need to check if the local ip subnets are restricted  
+2 the content of xx(device)_eigrp.txt is the config of ip protocol (eigrp here ) in which route-map is implemented(distribute route-map) in layer3 device(ban/ran router here) 
+3 in auto show video , there is "ture"/"false" information in screen when running python script , can ignore it . the result is writen in prefix_output_detail.txt
