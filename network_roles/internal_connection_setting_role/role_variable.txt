@@ -1,0 +1,21 @@
+devices 
+- hostname: r1
+  rib_no: 153 
+  lo_ip 10.0.0.1 
+  net: 10.2.0.1
+- hostname: r2
+  rib_no: 153 
+  lo_ip 10.0.0.2 
+  net: 10.2.0.2
+- hostname: r3
+  rib_no: 153 
+  lo_ip 10.0.0.3 
+  net: 10.2.0.3
+- hostname: r4
+  rib_no: 153 
+  lo_ip 10.0.0.4 
+  net: 10.2.0.4
+- hostname: r5
+  rib_no: 153 
+  lo_ip 10.0.0.5
+  net: 10.2.0.5

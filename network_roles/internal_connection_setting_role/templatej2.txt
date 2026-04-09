@@ -1,0 +1,13 @@
+router eigrp CCIE
+address-family ipv4 unicast autonomous-system 1 
+rib-scale {{ rib_no }}
+ex
+
+int r {{ loopback }}
+ip vrf forwarding {{ vrf }} 
+ex
+router os 1 vrf Corp 
+capability vrf-lite 
+router-id {{ lo_ip }}  
+net {{ net }} 0.0.0.0 a {{ area_no }} 
+ex

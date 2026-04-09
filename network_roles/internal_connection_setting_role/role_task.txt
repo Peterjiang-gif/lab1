@@ -1,0 +1,12 @@
+ task main.yml 
+ name : router_config  
+ host: all
+ connection: local
+ fact: no 
+ var : var.yml
+ task : config route devices
+  name: 
+  ansible.template.bulitin:
+   so: x.j2 
+   match: line 
+ loop: {{ devices }}
