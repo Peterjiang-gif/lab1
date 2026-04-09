@@ -1,0 +1,16 @@
+int vlan {{ vlan_no }} 
+standby {{ ipv6_no }} ipv6 {{ipv6_address}}
+standby {{ ipv6_no }} timer 5 15 
+standby {{ ipv6_no }} pri 255 
+standby {{ ipv6_no }} preempt 
+ex 
+
+track 1 ip route {{ network }} reachability 
+
+int vlan {{ vlan_no }} 
+standby {{ ipv4_no }} ip {{ ipv4_address }} 
+standby {{ ipv4_no }} timer 5 15 
+standby {{ ipv4_no }} pri 255 
+standby {{ ipv4_no }} preempt 
+standby {{ ipv4_no }} track 1 decrement {{ track_no }} 
+ex 

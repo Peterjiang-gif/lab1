@@ -1,0 +1,19 @@
+devices 
+- hostname: sw1
+  vlan_no: 100
+  ipv6_no: 34 
+  ipv6_address: FE80:100::1 
+  ipv4_address: 10.225.0.1 
+  track_no: 10  
+- hostname: sw2
+  vlan_no: 100
+  ipv6_no: 34 
+  ipv6_address: FE80:100::1 
+  ipv4_address: 10.225.0.1 
+  track_no: 10  
+- hostname: sw3
+  vlan_no: 100
+  ipv6_no: 34 
+  ipv6_address: FE80:100::1 
+  ipv4_address: 10.225.0.1 
+  track_no: 10  
