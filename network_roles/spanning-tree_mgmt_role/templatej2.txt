@@ -1,0 +1,5 @@
+spanning-tree mode mst
+instance {{ ins_no1 }} vlan {{ vlan_ins1 }}
+instance 2 {{ ins_no2 }} {{ vlan_ins2 }}
+spanning-tree mst 1 pri {{ pri_no1 }}
+spanning-tree mst 2 pri {{ pri_no2 }} 

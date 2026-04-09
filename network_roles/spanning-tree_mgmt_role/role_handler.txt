@@ -1,0 +1,15 @@
+local: localhost 
+connection: local 
+facts:no
+task: 
+ listener : router_config
+ name: service_now set 
+ service_now.itsm.instance:
+  instance_url: https://serivce_now.incident_task
+  username: admin
+  password: admin
+  number: INC10234
+  state: updated
+  resolution_note: router config done 
+  urgency: low
+  impact: low

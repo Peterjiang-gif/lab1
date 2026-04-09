@@ -1,0 +1,22 @@
+devices 
+- hostname: sw1
+  ins_no1:1
+  ins_no2:2 
+  vlan_ins1:23 
+  vlan_ins2:34
+  pri_no1: 0 
+  pri_no2: 4096
+- hostname: sw2
+  ins_no1:1
+  ins_no2:2 
+  vlan_ins1:23 
+  vlan_ins2:34
+  pri_no1: 0 
+  pri_no2: 4096
+- hostname: sw3
+  ins_no1:1
+  ins_no2:2 
+  vlan_ins1:23 
+  vlan_ins2:34
+  pri_no1: 0 
+  pri_no2: 4096
