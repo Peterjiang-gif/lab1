@@ -1,0 +1,16 @@
+router bgp {{ bgp_as }} 
+bgp router-id {{ bgp_lo }}
+no bgp default ipv4-unicast 
+nei {{ bgp_net }} remote-as {{ bgp_as }}
+nei {{ bgp_net }} update-so lo0 
+address-family vpnv4 unicast 
+nei {{ bgp_net }} act 
+nei {{ bgp_net }} send-community both 
+ex
+address-family ipv4 vrf {{ vrf }} 
+max-path ibgp 2 
+nei {{ local_bgp_net }} remote-as {{ remote_as }} 
+nei {{ local_bgp_net }} local-as {{ local_as }} 
+nei {{ local_bgp_net }} act 
+ex
+ex
