@@ -1,0 +1,22 @@
+class-map match-all video
+ match dscp {{ dscp1 }} 
+class-map match-all voice
+ match dscp {{ dscp2 }} 
+class-map match-all signaling
+ match dscp {{ dscp3 }} 
+policy-map LLQ
+ class {{ class1 }}
+  priority percent 2
+ class {{ class2 }}
+  bandwidth remaining percent 5 
+ class {{ class3 }}
+  bandwidth remaining percent 20 
+ class class-default
+  bandwidth remaining percent 50 
+policy-map Shape
+ class class-default
+  shape average 10000000
+   service-policy {{ service-policy }}
+
+interface Ethernet0/0
+  service-policy output Shape

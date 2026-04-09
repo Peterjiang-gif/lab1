@@ -1,0 +1,41 @@
+devices 
+- hostname: r1
+  dscp1： af41
+  dscp2: ef 
+  dscp3: af31
+  class1: voice
+  class2: signaling 
+  class3: video
+  service-policy:LLQ
+- hostname: r2
+  dscp1： af41
+  dscp2: ef 
+  dscp3: af31
+  class1: voice
+  class2: signaling 
+  class3: video
+  service-policy:LLQ2
+- hostname: r3
+  dscp1： af41
+  dscp2: ef 
+  dscp3: af31
+  class1: voice
+  class2: signaling 
+  class3: video
+  service-policy:LLQ3
+- hostname: r4
+  dscp1： af41
+  dscp2: ef 
+  dscp3: af31
+  class1: voice
+  class2: signaling 
+  class3: video
+  service-policy:LLQ
+- hostname: r5
+  dscp1： af41
+  dscp2: ef 
+  dscp3: af31
+  class1: voice
+  class2: signaling 
+  class3: video
+  service-policy:LLQ
